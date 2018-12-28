@@ -7,6 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@johmun/vue-tags-input": "^2.0.0",
+    "axios": "^0.18.0",
+    "node": "^11.5.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
