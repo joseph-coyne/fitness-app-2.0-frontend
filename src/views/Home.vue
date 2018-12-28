@@ -95,18 +95,6 @@
   </div>
 </template>
 
-<style>
-.parallax {
-  background-size: 150%
-}
-/*router-link {
-  color: white;
-}*/
-#homebutton {
-  color: white;
-}
-</style>
-
 <script>
 export default {
   data: function() {

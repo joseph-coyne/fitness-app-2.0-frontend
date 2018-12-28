@@ -14,6 +14,11 @@ import TrainersEdit from "./views/trainers/TrainersEdit.vue";
 import UsersLogin from "./views/users/UsersLogin.vue";
 import UsersSignup from "./views/users/UsersSignup.vue";
 import TrainersHome from "./views/trainers/TrainersHome.vue";
+import MealsIndex from './views/MealsIndex.vue';
+import WorkoutsShow from "./views/WorkoutsShow.vue";
+import WorkoutsIndex from "./views/WorkoutsIndex.vue";
+import axios from 'axios';
+
 
 Vue.use(Router);
 
@@ -89,5 +94,9 @@ export default new Router({
       name: "logout",
       component: Logout
     }
+
+    { path: "/meals", name: "meals-index", component: MealsIndex },
+    { path: "/workouts/daily", name: "workouts-show", component: WorkoutsShow },
+    {path: "/workouts", name:"workouts-index", component: WorkoutsIndex}
   ]
 });
