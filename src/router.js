@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Logout from "./views/Logout.vue";
-import UsersShow from "./views/users/UsersShow.vue";
+import UsersShow from "./views/UsersShow.vue";
 import UsersEdit from "./views/users/UsersEdit.vue";
 import UsersAppointments from "./views/users/UsersAppointments.vue";
 import TrainersIndex from "./views/trainers/TrainersIndex.vue";

@@ -1,7 +1,11 @@
 <template>
 
  <div class="users-show">
+  <!-- current user info-->
+      <h1>{{ profile }}</h1>
+      <!-- end current user info -->
 
+<<<<<<< HEAD
        <!-- <div class=>
             Main Section -->
            <!-- <section id="main">
@@ -104,57 +108,121 @@
                <!-- Main Content -->
            </section>
            <!-- /Main Section -->
+=======
+      <!-- daily meals template -->
+      <!-- add modal for new meal -->
+      <div class="container">
+        <div>
+          <div>
+            <!-- modal button will be breakfast -->
+            <h4>Breakfast</h4>
+            <!-- after meal is created it will populate the meal name -->
+              <!-- Button trigger modal -->
+              <div>{{newMeal.name}}</div>
+              <button>
+                Add Meal
+              </button>
+            <h4>Snack</h4>
+              <div>{{newMeal.name}}</div>
+              <button>
+                Add Meal
+              </button>    
+            <h4>Lunch</h4>
+              <button>
+                Add Meal
+              </button>        
+            <h4>Snack</h4>
+              <button>
+                Add Meal
+              </button>    
+            <h4>Dinner</h4>
+              <button>
+                Add Meal
+              </button>
+          </div>
+          <!-- nutrient % -->
+          <div>
+           <h4>Macronutrients</h4>
+           <p>Protein: </p>
+           <p>Carbohydrates: </p>
+           <p>Fats: </p>
 
-           <!-- Modal -->
-           <section id="modals">
-               <!-- Registration Modal -->
-               <div class="modal register fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModal" aria-hidden="true">
-                 <div class="modal-dialog" role="document">
-                   <div class="modal-content">
-                     <div class="modal-body">
-                       <div class="meals-new">
-                         <form v-on:submit.prevent="submit()">
-                           <h1>Create Meal</h1>
-                           <ul>
-                             <li class="text-danger" v-for="error in errors">{{ error }}</li>
-                           </ul>
-                           <div class="form-group">
-                             <label>Meal Name:</label> 
-                             <input type="text" class="form-control" v-model="mealName" placeholder="Meal Name">
-                           </div>
-                           <div class="form-group">
-                             <label>Ingredients:</label> 
-                             <div>
-                                 <vue-tags-input
-                                   v-model="tag"
-                                   :tags="tags"
-                                   :autocomplete-items="filteredItems"
-                                   @tags-changed="newTags => tags = newTags" placeholder="Search Ingredients">
-                                 </vue-tags-input>
-                               </div>
-                           </div><br>
-                           <div class="form-group">
-                             <!-- user types directions for creating meal -->
-                             <textarea rows="10" cols="50" placeholder="Add Instructions for your meal" class="form-control" v-model="instructions">
-                             </textarea>
-                           </div>
-                           <input type="submit" class="btn btn-color" value="Add Meal">
-                         </form>
-                       </div>
-                     </div>
-                     <div class="modal-footer">
-                       <button v-on:click="emptyModal()" type="button" class="btn btn-color" data-dismiss="modal">Save</button>
-                       <button v-on:click="emptyModal()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <!-- /Registration Modal -->
-           </section>
-           <!-- /Modal -->
-           <!-- Scroll To Top --> 
-           <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
-       </div>
+           <h4>Micronutrients</h4>
+
+           <h5>Total Daily Nutrients: </h5>
+          </div>
+          <!-- end nutrient % -->
+        </div>
+      </div>
+      <!-- end daily meals template -->
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create Meal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="meals-new">
+                <form v-on:submit.prevent="submit()">
+                  <h1>Create Meal</h1>
+                  <ul>
+                    <li class="text-danger" v-for="error in errors">{{ error }}</li>
+                  </ul>
+                  <div class="form-group">
+                    <label>Meal Name:</label> 
+                    <input type="text" class="form-control" v-model="mealName">
+                  </div>
+                  <div class="form-group">
+                    <label>Search Ingredient:</label> 
+                    <div>
+                        <vue-tags-input
+                          v-model="tag"
+                          :tags="tags"
+                          :autocomplete-items="filteredItems"
+                          @tags-changed="newTags => tags = newTags">
+                        </vue-tags-input>
+                        <p>{{tags}}</p>
+                      </div>
+                  </div><br>
+                  <div class="form-group">
+                    <!-- user types directions for creating meal -->
+                    <textarea rows="10" cols="50" placeholder="Add Instructions for your meal" class="form-control" v-model="instructions">
+                    </textarea>
+                  </div>
+                  <input type="submit" class="btn btn-primary" value="Add Meal">
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button  type="button" class="btn btn-primary" data-dismiss="modal">Add Meal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end modal -->
+      
+
+      <!-- current user meals -->
+      <!-- <div v-for="meal in meals">
+        <p>{{meal.name}}</p>
+        <p>{{meal.recipe_instructions}}</p>
+      </div> -->
+      <!-- end current user meals -->
+>>>>>>> a20c405c7886452e3716f2e82c66c3bfcdd343e3
+
+      <!-- meals search -->
+      <input type="button" value="My Meals"> 
+      <input type="button" value="All Meals">
+
+      <!-- end meals search -->
+       
  </div>
 </template>
 
@@ -306,6 +374,7 @@
     }
   };
 </script>
+<<<<<<< HEAD
 =======
   <div class="users-show">
     <div class="row">
@@ -393,3 +462,5 @@ export default {
   computed: {}
 };
 </script>
+=======
+>>>>>>> a20c405c7886452e3716f2e82c66c3bfcdd343e3
