@@ -146,7 +146,7 @@ export default {
       };
     },
     isUser: function() {
-      if(localStorage.getItem("user_id")) {
+      if (localStorage.getItem("user_id")) {
           return true;
         }
         return false;

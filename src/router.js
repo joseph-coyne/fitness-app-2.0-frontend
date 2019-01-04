@@ -93,7 +93,7 @@ export default new Router({
       path: "/logout",
       name: "logout",
       component: Logout
-    }
+    },
 
     { path: "/meals", name: "meals-index", component: MealsIndex },
     { path: "/workouts/daily", name: "workouts-show", component: WorkoutsShow },
