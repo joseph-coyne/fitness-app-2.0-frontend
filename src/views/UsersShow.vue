@@ -51,6 +51,44 @@
         </div>
       </div>
       <!-- end daily meals template -->
+      <!-- begining of nnanna/users -->
+      <div class="col-md-6 pr-70">
+
+          <div class="team-member">
+             <div class="member-photo">
+                <img class="img-responsive" :src="user.avatar">
+             </div>
+          </div>
+
+
+      </div>
+
+      <div>
+          <h2>
+             {{ user.name }} </h2>
+          
+          <p > Badge:
+             {{user.badge_name}}
+          </p>
+
+          <p>
+             {{ user.bio }}
+          </p>
+
+          <p>
+             Level: {{user.level}}
+          </p>
+
+          <h4>
+             <!-- <i class="fa fa-phone mr-5 o-4"></i> --> <strong> Progress: {{user.progress}}%</strong>
+          </h4>
+
+          <p>
+             <i></i><a>{{user.email}}</a>
+          </p>
+          <button> <router-link to="/users/me/edit">Edit</router-link> </button>
+
+      </div>
 
 
       <!-- Modal -->
