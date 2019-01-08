@@ -2,7 +2,7 @@
 
  <div class="users-show">
   <!-- current user info-->
-      <h1>{{ profile }}</h1>
+      <h1>profile page</h1>
       <!-- end current user info -->
 
       <!-- daily meals template -->
@@ -196,7 +196,7 @@
     },
     created: function() {
       axios.get("http://localhost:3000/api/users/me").then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.user = response.data;
         // this.lastThreeMeals = this.user.meals.slice(this.user.meals.length - 3, this.user.meals.length);
         this.lastThreeMeals = [

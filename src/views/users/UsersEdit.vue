@@ -32,15 +32,15 @@
                 <div class="form-group">
                   <div class="col-md-5">
                     <label>First Name</label>
-                    <input type="text" v-model="firstName" maxlength="100" class="form-control" id="contact_name">
+                    <input type="text" v-model="firstName" maxlength="100" class="form-control">
                   </div>                  
                   <div class="col-md-5">
                     <label>Last Name</label>
-                    <input type="text" v-model="lastName" maxlength="100" class="form-control" id="contact_name">
+                    <input type="text" v-model="lastName" maxlength="100" class="form-control">
                   </div>            
                   <div class="col-md-5">
                     <label>Username</label>
-                    <input type="text" v-model="username" maxlength="100" class="form-control" id="contact_name">
+                    <input type="text" v-model="username" maxlength="100" class="form-control">
                   </div>
                   <div class="col-md-5">
                     <label>E-mail</label>
@@ -83,7 +83,7 @@
           <div class="col-md-4">
             <div class="white-row">
               <figure>
-                <img class="radius6 img-responsive" :src="user.image_url" alt="" />
+                <img class="radius6 img-responsive" :src="user.avatar" alt="" />
               </figure>
             </div>
           </div>
@@ -101,6 +101,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      user: [],
       firstName: "",
       lastName: "",
       username: "",
@@ -116,13 +117,13 @@ export default {
       .get("http://localhost:3000/api/users/" + this.$route.params.id)
       .then(response => {
         this.user = response.data;
-        this.firstName = response.data.first_name
-        this.lastName = response.data.last_name
-        this.username = response.data.username
-        this.email = response.data.email
-        this.height = response.data.height
-        this.weight = response.data.weight
-        this.image = response.data.image
+        this.firstName = response.data.first_name;
+        this.lastName = response.data.last_name;
+        this.username = response.data.username;
+        this.email = response.data.email;
+        this.height = response.data.height;
+        this.weight = response.data.weight;
+        this.image = response.data.image;
       });
   },
   methods: {
