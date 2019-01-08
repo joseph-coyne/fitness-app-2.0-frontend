@@ -6,7 +6,7 @@
 
   		<!-- PAGE TITLE -->
   		<section class="container">
-  	<h2>Find your <strong>guide</strong></h2>
+  			<h2>Find your <strong>guide</strong></h2>
   			<p class="lead">Local trainers dedicated to helping you do your best in any area you want to pursue!</p> 
 
 					<!-- search form -->
@@ -17,7 +17,7 @@
 
   			<div class="row">
   				<ul class="sort-destination isotope" data-sort-id="isotope-list" >
-  					<li class="isotope-item col-md-3" v-for="trainer in orderBy(filterBy(trainers, searchText), sortAttribute, sortAscending)" v-bind:key="trainer.id">
+  					<li v-for="trainer in orderBy(filterBy(trainers, searchText), sortAttribute, sortAscending)" v-bind:key="trainer.id">
   						<div class="item-box">
   							<figure>
   								<router-link v-bind:to="'/trainers/' + trainer.id"><img :src="(trainer.image_url)" width="263" height="395" alt=""></router-link>
@@ -52,26 +52,6 @@
 </template>
 
 <style>
-body {
-	margin-top: 20px;
-}
-img.img-responsive {
-/*	height: 350px;*/
-}
-	#tags {
-		padding: 5px;
-	}
-	hr {
-		margin-top: 0px;
-		margin-bottom: 10px;
-	}
-	ul.isotope {
-		opacity: 1 !important; 
-	}
-	input#k {
-		width: 23%;
-	}
-
 </style>
 
 <script>
