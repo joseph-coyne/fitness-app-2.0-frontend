@@ -97,73 +97,73 @@
 </template>
 
 <script>
-import axios from "axios";
-export default {
-  data: function() {
-    return {
-      user: [],
-      firstName: "",
-      lastName: "",
-      username: "",
-      password: "",
-      passwordConfirmation: "",
-      email: "",
-      avatar: "",
-      errors: []
-    };
-  },
-  created: function() {
-    axios
-      .get("http://localhost:3000/api/users/" + this.$route.params.id)
-      .then(response => {
-        this.user = response.data;
-        this.firstName = response.data.first_name;
-        this.lastName = response.data.last_name;
-        this.username = response.data.username;
-        this.email = response.data.email;
-        this.height = response.data.height;
-        this.weight = response.data.weight;
-        this.avatar = response.data.avatar;
-      });
-  },
-  methods: {
-    setFile: function(event) {
-      if (event.target.files.length > 0) {
-        this.avatar = event.target.files[0];
+  import axios from "axios";
+  export default {
+    data: function() {
+      return {
+        user: [],
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: "",
+        passwordConfirmation: "",
+        email: "",
+        avatar: "",
+        errors: []
+      };
+    },
+    created: function() {
+      axios
+        .get("http://localhost:3000/api/users/" + this.$route.params.id)
+        .then(response => {
+          this.user = response.data;
+          this.firstName = response.data.first_name;
+          this.lastName = response.data.last_name;
+          this.username = response.data.username;
+          this.email = response.data.email;
+          this.height = response.data.height;
+          this.weight = response.data.weight;
+          this.avatar = response.data.avatar;
+        });
+    },
+    methods: {
+      setFile: function(event) {
+        if (event.target.files.length > 0) {
+          this.avatar = event.target.files[0];
+        }
+      },
+      submit: function() {
+        var formData = new FormData();
+          formData.append("first_name", this.firstName);
+          formData.append("last_name", this.lastName);
+          formData.append("username", this.username);
+          formData.append("password", this.password);
+          formData.append("password_confirmation", this.password_confirmation);
+          formData.append("email", this.email);
+          formData.append("avatar", this.avatar);
+          formData.append("height", this.height);
+          formData.append("weight", this.weight);
+        axios
+          .patch("http://localhost:3000/api/users/" + this.$route.params.id, formData)
+          .then(response => {
+            this.$refs.fileInput.value = "";
+            this.$router.push("/users/me");
+          })
+          .catch(error => {
+            this.errors = error.response.data.errors;
+          });
+      },
+      deleteUser: function(user) {
+        axios
+          .delete("http://localhost:3000/api/users/" + this.$route.params.id)
+          .then(response => {
+            delete axios.defaults.headers.common["Authorization"];
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("trainer_id");
+            this.$router.push("/");
+          });
       }
-    },
-    submit: function() {
-      var formData = new FormData();
-        formData.append("first_name", this.firstName);
-        formData.append("last_name", this.lastName);
-        formData.append("username", this.username);
-        formData.append("password", this.password);
-        formData.append("password_confirmation", this.password_confirmation);
-        formData.append("email", this.email);
-        formData.append("avatar", this.avatar);
-        formData.append("height", this.height);
-        formData.append("weight", this.weight);
-      axios
-        .patch("http://localhost:3000/api/users/" + this.$route.params.id, formData)
-        .then(response => {
-          this.$refs.fileInput.value = "";
-          this.$router.push("/users/me");
-        })
-        .catch(error => {
-          this.errors = error.response.data.errors;
-        });
-    },
-    deleteUser: function(user) {
-      axios
-        .delete("http://localhost:3000/api/users/" + this.$route.params.id)
-        .then(response => {
-          delete axios.defaults.headers.common["Authorization"];
-          localStorage.removeItem("jwt");
-          localStorage.removeItem("user_id");
-          localStorage.removeItem("trainer_id");
-          this.$router.push("/");
-        });
     }
-  }
-};
+  };
 </script>
