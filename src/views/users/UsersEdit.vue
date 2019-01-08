@@ -32,15 +32,15 @@
                 <div class="form-group">
                   <div class="col-md-5">
                     <label>First Name</label>
-                    <input type="text" v-model="firstName" maxlength="100" class="form-control" id="contact_name">
+                    <input type="text" v-model="firstName" maxlength="100" class="form-control">
                   </div>                  
                   <div class="col-md-5">
                     <label>Last Name</label>
-                    <input type="text" v-model="lastName" maxlength="100" class="form-control" id="contact_name">
+                    <input type="text" v-model="lastName" maxlength="100" class="form-control">
                   </div>            
                   <div class="col-md-5">
                     <label>Username</label>
-                    <input type="text" v-model="username" maxlength="100" class="form-control" id="contact_name">
+                    <input type="text" v-model="username" maxlength="100" class="form-control">
                   </div>
                   <div class="col-md-5">
                     <label>E-mail</label>
