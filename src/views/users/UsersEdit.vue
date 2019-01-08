@@ -108,7 +108,7 @@ export default {
       password: "",
       passwordConfirmation: "",
       email: "",
-      image: "",
+      avatar: "",
       errors: []
     };
   },
@@ -123,13 +123,13 @@ export default {
         this.email = response.data.email;
         this.height = response.data.height;
         this.weight = response.data.weight;
-        this.image = response.data.image;
+        this.avatar = response.data.avatar;
       });
   },
   methods: {
     setFile: function(event) {
       if (event.target.files.length > 0) {
-        this.image = event.target.files[0];
+        this.avatar = event.target.files[0];
       }
     },
     submit: function() {
@@ -140,7 +140,7 @@ export default {
         formData.append("password", this.password);
         formData.append("password_confirmation", this.password_confirmation);
         formData.append("email", this.email);
-        formData.append("image", this.image);
+        formData.append("avatar", this.avatar);
         formData.append("height", this.height);
         formData.append("weight", this.weight);
       axios
