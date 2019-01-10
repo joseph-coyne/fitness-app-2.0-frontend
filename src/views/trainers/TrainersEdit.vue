@@ -4,11 +4,7 @@
     <div id="wrapper">
 
       <!-- PAGE TITLE -->
-      <header id="page-title"> <!-- style="background-image:url('assets/images/demo/parallax_bg.jpg')" -->
-        <!--
-          Enable only if bright background image used
-          <span class="overlay"></span>
-        -->
+      <header id="page-title">
 
         <div class="container">
           <h1>Edit Profile</h1>
@@ -32,15 +28,15 @@
                 <div class="form-group">
                   <div class="col-md-5">
                     <label>First Name</label>
-                    <input type="text" v-model="firstName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name" id="contact_name">
+                    <input type="text" v-model="firstName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name">
                   </div>                  
                   <div class="col-md-5">
                     <label>Last Name</label>
-                    <input type="text" v-model="lastName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name" id="contact_name">
+                    <input type="text" v-model="lastName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name">
                   </div>            
                   <div class="col-md-5">
                     <label>Username</label>
-                    <input type="text" v-model="username" maxlength="100" class="form-control" name="contact_name" id="contact_name">
+                    <input type="text" v-model="username" maxlength="100" class="form-control" name="contact_name">
                   </div>
                   <div class="col-md-5">
                     <label>E-mail</label>
@@ -56,11 +52,11 @@
                   </div>
                   <div class="col-md-8">
                     <label>Location</label>
-                    <input type="text" v-model="location" maxlength="100" class="form-control" name="contact_name" id="contact_name">
+                    <input type="text" v-model="location" maxlength="100" class="form-control" name="contact_name">
                   </div>
                   <div class="col-md-8">
                     <label>Video Url</label>
-                    <input type="text" v-model="videoUrl" maxlength="100" class="form-control" name="contact_name" id="contact_name">
+                    <input type="text" v-model="videoUrl" maxlength="100" class="form-control" name="contact_name">
                   </div> 
                 </div>
               </div>
@@ -113,7 +109,7 @@
           <div class="col-md-4">
             <div class="white-row">
               <figure>
-                <img class="radius6 img-responsive" :src="trainer.image_url" alt="" />
+                <img class="radius6 img-responsive" :src="trainer.avatar" alt="" />
               </figure>
             </div>
           </div>
@@ -153,7 +149,7 @@ export default {
       passwordConfirmation: "",
       email: "",
       videoUrl: "",
-      image: "",
+      avatar: "",
       bio: "",
       location: "",
       tag: "",
@@ -174,7 +170,7 @@ export default {
         this.bio = response.data.bio;
         this.location = response.data.location;
         this.videoUrl = response.data.video_url;
-        this.image = response.data.image;
+        this.avatar = response.data.avatar;
         this.tags = response.data.tags.map(a => {
           return { text: a.name, id: a.id };
         });
@@ -188,7 +184,7 @@ export default {
   methods: {
     setFile: function(event) {
       if (event.target.files.length > 0) {
-        this.image = event.target.files[0];
+        this.avatar = event.target.files[0];
       }
     },
     submit: function() {
@@ -202,8 +198,8 @@ export default {
       formData.append("bio", this.bio);
       formData.append("location", this.location);
       formData.append("tags", this.tags.map(a => a.id));
-      if (this.image) {
-        formData.append("image", this.image);
+      if (this.avatar) {
+        formData.append("avatar", this.avatar);
       }
 
       axios
