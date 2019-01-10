@@ -7,7 +7,6 @@ import Chat from "vue-beautiful-chat";
 Vue.use(Chat);
 Vue.use(Vue2Filters);
 
-
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
 	axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;

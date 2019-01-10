@@ -9,6 +9,7 @@
   "dependencies": {
     "@johmun/vue-tags-input": "^2.0.0",
     "axios": "^0.18.0",
+    "mixin": "^0.2.0",
     "node": "^11.5.0",
     "vue": "^2.5.17",
     "vue-beautiful-chat": "^2.2.0",
@@ -24,6 +25,7 @@
     "@vue/cli-service": "^3.0.5",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
+    "vue-mixins": "^0.3.6",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.28.2"
   },
