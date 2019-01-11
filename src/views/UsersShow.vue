@@ -65,7 +65,7 @@
 
       <div>
           <h2>
-             {{ user.name }} </h2>
+             {{ user.username }} </h2>
           
           <p > Badge:
              {{user.badge_name}}
