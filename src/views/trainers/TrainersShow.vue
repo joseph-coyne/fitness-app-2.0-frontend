@@ -26,7 +26,7 @@
           <article class="row">
             <div class="col-md-6">
               <div class="item-box">
-                  <img class="img-responsive" :src="trainer.image_url" width="555" height="311" alt="">
+                  <img class="img-responsive" :src="trainer.avatar" width="555" height="311" alt="">
               </div>
               
             </div>
@@ -44,7 +44,7 @@
             <div>
               <beautiful-chat
                 :participants="participants"
-                :titleImageUrl="titleImageUrl"
+                :titleavatar="titleavatar"
                 :onMessageWasSent="onMessageWasSent"
                 :messageList="messageList"
                 :newMessagesCount="newMessagesCount"
@@ -276,15 +276,15 @@ export default {
               {
                 id: 'user1',
                 name: "",
-                imageUrl: ''
+                avatar: ''
               },
               {
                 id: 'user2',
                 name: 'User',
-                imageUrl: 'https://avatars3.githubusercontent.com/u/37018832?s=200&v=4'
+                avatar: 'https://avatars3.githubusercontent.com/u/37018832?s=200&v=4'
               }
-            ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
-            titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+            ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `avatar` is supposed to be the user avatar.
+            titleavatar: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
             messageList: [
                 { type: 'text', author: `user1`, data: { text: `Have any questions? Feel free to ask!` } },
             ], // the list of the messages to show, can be paginated and adjusted dynamically
@@ -324,7 +324,7 @@ export default {
   		this.trainer = response.data;
       this.rating = response.data.rating
       this.participants[0].name = response.data.first_name
-      this.participants[0].imageUrl = response.data.image_url
+      this.participants[0].avatar = response.data.avatar
   	});
   },
   methods: {
