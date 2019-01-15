@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Logout from "./views/Logout.vue";
-import UsersShow from "./views/UsersShow.vue";
+import UsersShow from "./views/users/UsersShow.vue";
 import UsersEdit from "./views/users/UsersEdit.vue";
 import UsersAppointments from "./views/users/UsersAppointments.vue";
 import TrainersIndex from "./views/trainers/TrainersIndex.vue";
@@ -14,11 +14,10 @@ import TrainersEdit from "./views/trainers/TrainersEdit.vue";
 import UsersLogin from "./views/users/UsersLogin.vue";
 import UsersSignup from "./views/users/UsersSignup.vue";
 import TrainersHome from "./views/trainers/TrainersHome.vue";
-import MealsIndex from './views/MealsIndex.vue';
+import MealsIndex from "./views/MealsIndex.vue";
 import WorkoutsShow from "./views/WorkoutsShow.vue";
 import WorkoutsIndex from "./views/WorkoutsIndex.vue";
-import axios from 'axios';
-
+import axios from "axios";
 
 Vue.use(Router);
 
@@ -97,6 +96,6 @@ export default new Router({
 
     { path: "/meals", name: "meals-index", component: MealsIndex },
     { path: "/workouts/daily", name: "workouts-show", component: WorkoutsShow },
-    {path: "/workouts", name:"workouts-index", component: WorkoutsIndex}
+    { path: "/workouts", name: "workouts-index", component: WorkoutsIndex }
   ]
 });

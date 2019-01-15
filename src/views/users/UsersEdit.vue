@@ -5,11 +5,6 @@
 
       <!-- PAGE TITLE -->
       <header id="page-title"> <!-- style="background-image:url('assets/images/demo/parallax_bg.jpg')" -->
-        <!--
-          Enable only if bright background image used
-          <span class="overlay"></span>
-        -->
-
         <div class="container">
           <h1>Edit Profile</h1>
 
@@ -44,15 +39,23 @@
                   </div>
                   <div class="col-md-5">
                     <label>E-mail</label>
-                    <input type="email" v-model="email" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control"  id="contact_email">
+                    <input type="email" v-model="email" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control">
                   </div>
                   <div class="col-md-5">
                     <label>Password</label>
-                    <input type="password" v-model="password" data-msg-required="Please enter your phone" data-msg-email="Please enter your phone" maxlength="100" class="form-control"  id="contact_phone">
+                    <input type="password" v-model="password" maxlength="100" class="form-control">
                   </div>          
                   <div class="col-md-5" v-if="password">
                     <label>Password Confirmation</label>
-                    <input type="password" v-model="passwordConfirmation" data-msg-required="Please enter your phone" data-msg-email="Please enter your phone" maxlength="100" class="form-control" id="contact_phone">
+                    <input type="password" v-model="passwordConfirmation" maxlength="100" class="form-control">
+                  </div>
+                  <div>
+                    <label>Level</label>
+                    <select v-model="level">
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -107,6 +110,7 @@
         username: "",
         password: "",
         passwordConfirmation: "",
+        level: "",
         email: "",
         avatar: "",
         errors: []
@@ -123,6 +127,7 @@
           this.email = response.data.email;
           this.height = response.data.height;
           this.weight = response.data.weight;
+          this.level = response.data.level;
           this.avatar = response.data.avatar;
         });
     },
@@ -142,6 +147,7 @@
           formData.append("email", this.email);
           formData.append("avatar", this.avatar);
           formData.append("height", this.height);
+          formData.append("level", this.level);
           formData.append("weight", this.weight);
         axios
           .patch("http://localhost:3000/api/users/" + this.$route.params.id, formData)

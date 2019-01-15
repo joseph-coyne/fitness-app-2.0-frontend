@@ -6,6 +6,8 @@
       <router-link to="/trainerslogin">Trainers Login</router-link> |
       <router-link to="/meals">My Meals</router-link> |
       <router-link to="/trainers">Trainers</router-link> |
+      <router-link to="/usersappointments">User Appointments</router-link> |
+      <router-link to="/trainersappointments">Trainer Appointments</router-link> |
       <router-link to="/users/me">My Page</router-link> 
     </div>
     <router-view/>
