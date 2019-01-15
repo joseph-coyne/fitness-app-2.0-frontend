@@ -1,102 +1,94 @@
 <template>
   <div class="users-edit">
     <!-- WRAPPER -->
-    <div id="wrapper">
+    
 
-      <!-- PAGE TITLE -->
-      <header id="page-title"> <!-- style="background-image:url('assets/images/demo/parallax_bg.jpg')" -->
-        <div class="container">
+      
           <h1>Edit Profile</h1>
 
-          <ul class="breadcrumb">
+          
             <li><router-link to="/trainers/me">Profile</router-link></li>
-            <li class="active">Edit</li>
+            <li>Edit</li>
           </ul>
-        </div>
-      </header>
+        
+  
 
-      <section id="contact" class="container">
+      
 
-        <div class="row">
+        
 
-          <!-- FORM -->
-          <div class="col-md-8">
+          
+          
 
-            <form id="contactForm" class="white-row" v-on:submit.prevent="submit()">
-              <div class="row">
-                <div class="form-group">
-                  <div class="col-md-5">
+            <form id="contactForm" v-on:submit.prevent="submit()">
+              
+                
+                  
                     <label>First Name</label>
-                    <input type="text" v-model="firstName" maxlength="100" class="form-control">
-                  </div>                  
-                  <div class="col-md-5">
+                    <input type="text" v-model="firstName" maxlength="100">
+                                
+                  
                     <label>Last Name</label>
-                    <input type="text" v-model="lastName" maxlength="100" class="form-control">
-                  </div>            
-                  <div class="col-md-5">
+                    <input type="text" v-model="lastName" maxlength="100">
+                           
+                 
                     <label>Username</label>
-                    <input type="text" v-model="username" maxlength="100" class="form-control">
-                  </div>
-                  <div class="col-md-5">
+                    <input type="text" v-model="username" maxlength="100">
+                  
+                  
                     <label>E-mail</label>
-                    <input type="email" v-model="email" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control">
-                  </div>
-                  <div class="col-md-5">
+                    <input type="email" v-model="email" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100">
+                  
+                
                     <label>Password</label>
-                    <input type="password" v-model="password" maxlength="100" class="form-control">
-                  </div>          
-                  <div class="col-md-5" v-if="password">
+                    <input type="password" v-model="password" maxlength="100">
+                           
+                  <div v-if="password">
                     <label>Password Confirmation</label>
-                    <input type="password" v-model="passwordConfirmation" maxlength="100" class="form-control">
+                    <input type="password" v-model="passwordConfirmation" maxlength="100">
                   </div>
-                  <div>
+                  
                     <label>Level</label>
                     <select v-model="level">
                       <option value="Beginner">Beginner</option>
                       <option value="Intermediate">Intermediate</option>
                       <option value="Advanced">Advanced</option>
                     </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group">
-                  <div class="col-md-12">
+                
+                
+            
+              
+                
+                  
                     <label>Profile Picture</label>
-                    <input type="file" class="form-control" v-on:change="setFile($event)" ref="fileInput">
-                  </div>
-                </div>
-              </div>
-            <br />
+                    <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                  
+       
 
-              <div class="row">
-                <div class="col-md-12">
+              
 
-                  <input id="contact_submit" type="submit" value="Save" class="btn btn-primary btn-lg" data-loading-text="Loading...">
-                  <button id="trainerdelete" type="button" class="btn btn-danger" v-on:click="deleteUser(user)">Delete Account</button>
-                </div>
-              </div>
+                  <input id="contact_submit" type="submit" value="Save" data-loading-text="Loading...">
+                  <button id="trainerdelete" type="button"  v-on:click="deleteUser(user)">Delete Account</button>
+              
             </form>
           
-          </div>
+        
           <!-- /FORM -->
 
 
           <!-- INFO -->
-          <div class="col-md-4">
-            <div class="white-row">
-              <figure>
-                <img class="radius6 img-responsive" :src="user.avatar" alt="" />
-              </figure>
-            </div>
-          </div>
+          
+             
+                <img :src="user.avatar" alt="" />
+              
+            
           <!-- /INFO -->
-        </div>
-      </section>
-    </div>
-    <!-- /WRAPPER -->
+        
+    
+    
+   </div>   <!-- /WRAPPER -->
 
-  </div>
+  
 </template>
 
 <script>

@@ -1,15 +1,9 @@
 <template>
 
  <div class="users-show">
-  <!-- current user info-->
+  
       <h1>profile page</h1>
-      <!-- end current user info -->
-
-      <!-- daily meals template -->
-      <!-- add modal for new meal -->
-      <div class="container">
-        <div>
-          <div>
+      
             <!-- modal button will be breakfast -->
             <h4>Breakfast</h4>
             <!-- after meal is created it will populate the meal name -->
@@ -35,9 +29,8 @@
               <button>
                 Add Meal
               </button>
-          </div>
-          <!-- nutrient % -->
-          <div>
+          
+        
            <h4>Macronutrients</h4>
            <p>Protein: </p>
            <p>Carbohydrates: </p>
@@ -46,24 +39,16 @@
            <h4>Micronutrients</h4>
 
            <h5>Total Daily Nutrients: </h5>
-          </div>
-          <!-- end nutrient % -->
-        </div>
-      </div>
-      <!-- end daily meals template -->
-      <!-- begining of nnanna/users -->
-      <div class="col-md-6 pr-70">
-
-          <div class="team-member">
-             <div class="member-photo">
-                <img class="img-responsive" :src="user.avatar">
-             </div>
-          </div>
+         
+          
+             
+                <img :src="user.avatar">
+             
 
 
-      </div>
+      
 
-      <div>
+      
           <h2>
              {{ user.name }} </h2>
           
@@ -88,33 +73,29 @@
           </p>
           <button> <router-link to="/users/me/edit">Edit</router-link> </button>
 
-      </div>
+      
 
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Create Meal</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+   
+      
+              <h5>Create Meal</h5>
+              <button type="button" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
-            <div class="modal-body">
-              <div class="meals-new">
+            
+              
                 <form v-on:submit.prevent="submit()">
                   <h1>Create Meal</h1>
                   <ul>
-                    <li class="text-danger" v-for="error in errors">{{ error }}</li>
+                    <li v-for="error in errors">{{ error }}</li>
                   </ul>
-                  <div class="form-group">
+                 
                     <label>Meal Name:</label> 
-                    <input type="text" class="form-control" v-model="mealName">
-                  </div>
-                  <div class="form-group">
+                    <input type="text" v-model="mealName">
+                
+                  
                     <label>Search Ingredient:</label> 
-                    <div>
+                    
                         <vue-tags-input
                           v-model="tag"
                           :tags="tags"
@@ -122,24 +103,20 @@
                           @tags-changed="newTags => tags = newTags">
                         </vue-tags-input>
                         <p>{{tags}}</p>
-                      </div>
-                  </div><br>
-                  <div class="form-group">
+                     
+                  
+                 
                     <!-- user types directions for creating meal -->
-                    <textarea rows="10" cols="50" placeholder="Add Instructions for your meal" class="form-control" v-model="instructions">
+                    <textarea placeholder="Add Instructions for your meal" v-model="instructions">
                     </textarea>
-                  </div>
-                  <input type="submit" class="btn btn-primary" value="Add Meal">
+                  
+                  <input type="submit" value="Add Meal">
                 </form>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button  type="button" class="btn btn-primary" data-dismiss="modal">Add Meal</button>
-            </div>
-          </div>
-        </div>
-      </div>
+              
+            
+              <button type="button"  data-dismiss="modal">Close</button>
+              <button  type="button"  data-dismiss="modal">Add Meal</button>
+            
       <!-- end modal -->
       
 
