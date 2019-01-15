@@ -1,47 +1,39 @@
 
 <template>
   <div class="trainers-show">
-  	<div>
-      <!-- WRAPPER -->
-      <div id="wrapper">
-
+  	
         <!-- PAGE TITLE -->
-        <header id="page-title">
-          <div class="container">
-            <button type="button" class="btn btn-default" id="edit" v-if="isTrainer()"><router-link :to="'/trainers/me/edit'">Edit Profile</router-link></button>
+        
+          
+            <button type="button"  v-if="isTrainer()"><router-link :to="'/trainers/me/edit'">Edit Profile</router-link></button>
             <h1>{{trainer.first_name}} <strong>{{trainer.last_name}}</strong></h1>
 
-            <ul class="breadcrumb">
+            
               <li v-if="isUser()"><router-link to="/trainers">Trainers</router-link></li>
               <li v-else><router-link to="/">Home</router-link></li>
-              <li class="active">About Me</li>
-            </ul>
-          </div>
-        </header>
+              <li>About Me</li>
+            
+          
 
-        <section class="container">
+        
 
           <!-- Who Am I -->
 
-          <article class="row">
-            <div class="col-md-6">
-              <div class="item-box">
-                  <img class="img-responsive" :src="trainer.avatar" width="555" height="311" alt="">
-              </div>
+         
+                  <img :src="trainer.avatar" width="555" height="311" alt="">
               
-            </div>
-            <div class="col-md-6">
+            
               <h3>Who Am I?</h3>
               <p>{{trainer.bio}}</p>
-              <span v-for="tags in trainer.tags" id="tags" class="label label-default">{{tags.name}}</span>
+              <span v-for="tags in trainer.tags" id="tags">{{tags.name}}</span>
 
-              <hr />
+              
 
-            <div>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Schedule Workout</a>    
-            </div>
             
-            <div>
+              <a href="#" data-toggle="modal" data-target="#myModal">Schedule Workout</a>    
+            
+            
+            
               <beautiful-chat
                 :participants="participants"
                 :titleavatar="titleavatar"
@@ -56,19 +48,17 @@
                 :showTypingIndicator="showTypingIndicator"
                 :colors="colors"
                 :alwaysScrollToBottom="alwaysScrollToBottom" />
-            </div>
-            <!-- appointment modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+           
+            
+            
                 <form v-on:submit.prevent="submit()">
-                  <div class="modal-header"><!-- modal header -->
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Schedule Workout Appointment</h4>
-                  </div><!-- /modal header -->
+                  
+                    <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4>Schedule Workout Appointment</h4>
+                  
 
                   <!-- modal body -->
-                  <div class="modal-body">
+                  
                     <vue-ctk-date-time-picker
                     v-model="time"
                     :disabled-dates="['2018-04-03', '2018-04-07', '2018-04-09', '2018-04-11', '2018-04-13', '2018-04-15', '2018-04-17', '2018-04-19']"
@@ -80,177 +70,98 @@
                     no-weekends-days
                     inline
                     ></vue-ctk-date-time-picker>
-                    <hr/>
-                    <div class="setappointment">
+                  
+                    
                       <h4 v-if=" time == '' ">Select a date:</h4>
                       <h4 v-else>{{ time | moment }}</h4>
-                    </div>
-                  </div>
+                  
+                 
                   <!-- /modal body -->
 
-                  <div class="modal-footer"><!-- modal footer -->
-                    <button class="btn btn-default" data-dismiss="modal">Cancel</button> 
-                    <input class="btn btn-primary" type="submit" value="Schedule"></input>
-                  </div>
+                  
+                    <button data-dismiss="modal">Cancel</button> 
+                    <input type="submit" value="Schedule"></input>
+                  
                 </form>
                   <!-- /modal footer -->
 
-                </div>
-              </div>
-            </div>
-<!-- End Appointment Modal -->
-            </div>
-          </article>
+               
+          
           <!-- /Who Am I -->
 
-          <div class="divider"><!-- divider -->
-            <i class="fa fa-star"></i>
-          </div>
+          
 
 
 
           <!-- WORK -->
-          <section class="container">
+          
 
-            <div class="row">
-
-              <div class="col-md-3"><!-- item 1 -->
-                <div class="item-box">
-                  <figure>
-                    <a class="item-hover" href="adult-athlete-body-414029.jpg">
-                      <span class="overlay color2"></span>
-                      <span class="inner">
-                        <span class="block fa fa-plus fsize20"></span>
+            
+                  
+                    <a href="adult-athlete-body-414029.jpg">
+                      
                         <strong>View</strong> Image
-                      </span>
+                      
                     </a>
-                    <img class="img-responsive" src="assets/images/demo/portfolio/adult-athlete-body-414029.jpg" width="260" height="260" alt="">
-                  </figure>
+                    <img src="assets/images/demo/portfolio/adult-athlete-body-414029.jpg">
+                 
       
-                </div>
-              </div>
-              <div class="col-md-3"><!-- item 2 -->
-                <div class="item-box">
-                  <figure>
-                    <a class="item-hover lightbox" :href="trainer.video_url" data-plugin-options='{"type":"iframe"}'>
-                      <span class="overlay color2"></span>
-                      <span class="inner">
-                        <span class="block fa fa-plus fsize20"></span>
+                
+              
+                  
+                    <a :href="trainer.video_url" data-plugin-options='{"type":"iframe"}'>
+                     
                         <strong>VIEW</strong> VIDEO
-                      </span>
+                      
                     </a>
-                    <img class="img-responsive" src="assets/images/demo/portfolio/athletes-endurance-energy-685534.jpg" width="260" height="260" alt="">
-                  </figure>
+                    <img src="assets/images/demo/portfolio/athletes-endurance-energy-685534.jpg">
+                  
         
-                </div>
-              </div>
+                
 
-              <div class="col-md-3"><!-- item 3 -->
-                <div class="item-box">
-                  <figure>
-                    <a class="item-hover lightbox" href="assets/images/demo/portfolio/active-balance-blond-hair-1117486.jpg" data-plugin-options='{"type":"image"}'>
-                      <span class="overlay color2"></span>
-                      <span class="inner">
-                        <span class="block fa fa-plus fsize20"></span>
+              
+                    <a href="assets/images/demo/portfolio/active-balance-blond-hair-1117486.jpg" data-plugin-options='{"type":"image"}'>
+            
                         <strong>View</strong> Image
-                      </span>
+                      
                     </a>
-                    <img class="img-responsive" src="assets/images/demo/portfolio/active-balance-blond-hair-1117486.jpg" width="260" height="260" alt="">
-                  </figure>
+                    <img src="assets/images/demo/portfolio/active-balance-blond-hair-1117486.jpg" alt="">
+                  
 
-                </div>
-              </div>
+               
 
-              <div class="col-md-3"><!-- item 4 -->
-                <div class="item-box">
-                  <figure>
-                    <a class="item-hover" href="assets/images/demo/portfolio/active-adult-athlete-416778.jpg">
-                      <span class="overlay color2"></span>
-                      <span class="inner">
-                        <span class="block fa fa-plus fsize20"></span>
+              
+                    <a  href="assets/images/demo/portfolio/active-adult-athlete-416778.jpg">
                         <strong>View</strong> Image
-                      </span>
+                      
                     </a>
-                    <img class="img-responsive" src="assets/images/demo/portfolio/active-adult-athlete-416778.jpg" width="260" height="260" alt="">
-                  </figure>
+                    <img src="assets/images/demo/portfolio/active-adult-athlete-416778.jpg" alt="">
+                  
       
-                </div>
-              </div>
-
-            </div>
-
-          </section>
+                
           <!-- /WORK -->
 
 
 
           <!-- CALLOUT -->
-          <section class="container">
-
-            <div v-if="isUser()" class="bs-callout text-center nomargin-bottom">
-              <h3>Come on, let's work <strong>together</strong>! <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Schedule Workout</a></h3>
+          
+            <div v-if="isUser()">
+              <h3>Come on, let's work <strong>together</strong>! <a href="#"  data-toggle="modal" data-target="#myModal">Schedule Workout</a></h3>
             </div>
-          </section>
+          
           <!-- /CALLOUT -->
 
-        </section>
+        
 
 
-      </div>
+      
       <!-- /WRAPPER -->
-    </div>
+    
   </div>
 </template>
 
 <style>
-div.timepicker-container {
-  overflow-x: hidden;
-  height: 420px !important;
-  width: 200px !important;
-}
-div.month-container {
-  height: auto !important;
-}
-button.datepicker-day.flex.align-center.justify-content-center.enable {
-  flex-grow: 0 !important;
-}
-button.datepicker-day.flex.align-center.justify-content-center.disabled {
-  flex-grow: 0 !important;
-}
-button.datepicker-day.align-center.justify-content-center {
-  flex-grow: 0 !important;
-}
-#edit {
-  align-items: right;
-  position: absolute;
-  right: 0px;
-  margin-top: 15px;
-}
-#tags {
-  margin-right: 5px;
-}
-button.datepicker-button {
-  display: none;
-  visibility: hidden;
-}
-div.datepicker-buttons-container {
-  display: none !important;
-  visibility: hidden;
-}
-div.datepicker-buttons-container.flex.justify-content-right.button-validate.flex-fixed {
-  display: none !important;
-}
-div.settime {
-  margin-bottom: -120px;
-  text-align: center;
-}
-.setappointment h4 {
-  text-align: center;
-}
-div.h-100.mh-100.numbers-container {
-overflow-x: hidden !important;
 
-}
 </style>
 
 <script>
