@@ -19,11 +19,9 @@
             <div class="row">
 
               <!-- REGISTER -->
-              <div class="col-md-6">
-
                 <h2>Create <strong>Account</strong></h2>
 
-                <form class="white-row" v-on:submit.prevent="submit()">
+                <form v-on:submit.prevent="submit()">
                   <!-- alert failed -->
                   <div v-if="errors == 'Password can\'t be blank'" class="alert alert-danger">
                     <i class="fa fa-frown-o"></i> 
@@ -35,29 +33,17 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group">
-                      <div class="col-md-12">
-                        <label>E-mail Address</label>
-                        <input type="text" v-model="email" class="form-control">
-                      </div>
-                    </div>
+                    <label>E-mail Address</label>
+                    <input type="text" v-model="email" class="form-control">
                   </div>
                   <div class="row">
-                    <div class="form-group">
-                      <div class="col-md-6">
-                        <label>Password</label>
-                        <input type="password" v-model="password" class="form-control">
-                      </div>
-                      <div class="col-md-6">
-                        <label>Re-enter Password</label>
-                        <input type="password" v-model="passwordConfirmation" class="form-control">
-                      </div>
-                    </div>
+                   <label>Password</label>
+                   <input type="password" v-model="password" class="form-control">
+                    <label>Re-enter Password</label>
+                     <input type="password" v-model="passwordConfirmation" class="form-control">
                   </div>
                   <div class="row">
-                    <div class="col-md-12">
                       <input type="submit" value="Sign Up" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
-                    </div>
                   </div>
 
                 </form>
@@ -66,11 +52,7 @@
               <!-- /REGISTER -->
 
               <!-- WHY? -->
-              <div class="col-md-6">
-
                 <h2>Make an <strong>impact</strong></h2>
-
-                <div class="white-row">
 
                   <h4>Join the Sparq team to increase your outreach to the community.</h4>
 
@@ -89,21 +71,7 @@
                     Already have an account?
                      <router-link to="/trainerslogin">Sign in</router-link>
                   </p>
-                </div>
-<!-- 
-                <div class="white-row">
-                  <h4>Join the Sparq Team</h4>
-                  <p>
-                    If you're looking to become a Sparq personal trainer <router-link to="/trainerssignup">register here</router-link>.
-                  </p>
-                </div> -->
-
-              </div>
-              <!-- /WHY? -->
-
-            </div>
-
-          </section>
+            </section>
 
         </div>
       </div>
