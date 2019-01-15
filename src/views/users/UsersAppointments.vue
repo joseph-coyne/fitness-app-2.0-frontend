@@ -1,32 +1,12 @@
 <template>
   <div class="users-appointments">
-
+    <ul v-for="appointment in appointments">
+      <img :src="appointment.trainer_avatar" width="263" height="263" alt="" data-toggle="modal" data-target="#appointmentShow" v-on:click="setCurrentAppointment(appointment)">
+      <h4>{{appointment.time | momentshow }}</h4>
+      <small >{{appointment.trainer_first_name}} {{appointment.trainer_last_name}}</small>
+    </ul>
     
-      
-      
-
-        <ul v-for="appointment in appointments">
-
-          
-              
-                <img :src="appointment.trainer_avatar" width="263" height="263" alt="" data-toggle="modal" data-target="#appointmentShow" v-on:click="setCurrentAppointment(appointment)">
-              
-              
-                <h4>{{appointment.time | momentshow }}</h4>
-                <small >{{appointment.trainer_first_name}} {{appointment.trainer_last_name}}</small>
-                
-              
-            
-
-        </ul>
-
-     
-
-
-
-    </section>
-      
-<!-- appointment show modal -->
+      <!-- appointment show modal -->
     
 
             <!-- modal header -->
