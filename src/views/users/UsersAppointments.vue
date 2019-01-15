@@ -29,7 +29,7 @@
           <li class="isotope-item col-md-3 ceo" ><!-- item 1 -->
             <div class="item-box fixed-box">
               <figure>
-                <img class="img-responsive" :src="appointment.trainer_image" width="263" height="263" alt="" data-toggle="modal" data-target="#appointmentShow" v-on:click="setCurrentAppointment(appointment)">
+                <img class="img-responsive" :src="appointment.trainer_avatar" width="263" height="263" alt="" data-toggle="modal" data-target="#appointmentShow" v-on:click="setCurrentAppointment(appointment)">
               </figure>
               <div id="appointment-item" class="item-box-desc">
                 <h4>{{appointment.time | momentshow }}</h4>
@@ -63,7 +63,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <figure class="item-box">
-                    <img class="img-responsive" :src="currentAppointment.trainer_image" alt="">
+                    <img class="img-responsive" :src="currentAppointment.trainer_avatar" alt="">
                   </figure>
                   <p class="when">{{currentAppointment.trainer_first_name}} {{currentAppointment.trainer_last_name}} <strong>|</strong> Strength Training</p>
                   <p class="when"> {{ currentAppointment.strftime }}</p>
