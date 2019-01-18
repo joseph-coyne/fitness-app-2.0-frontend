@@ -3,20 +3,10 @@
 
         <section class="container">
 
-          <header id="page-title">
-            <div class="container">
-              <h1>Your <strong>appointments</strong></h1>
-
-              <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Appointments</li>
-              </ul>
-            </div>
-          </header>
-
+      
           <div class="row">
 
-            <ul class="sort-destination isotope" data-sort-id="isotope-list" v-for="appointment in appointments">
+            <ul v-for="appointment in appointments">
 
               <li class="isotope-item col-md-3 ceo" ><!-- item 1 -->
                 <div class="item-box fixed-box">

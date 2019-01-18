@@ -10,12 +10,8 @@
   			<p class="lead">Local trainers dedicated to helping you do your best in any area you want to pursue!</p> 
 
 					<!-- search form -->
-				<div>
 					<input type="text" class="form-control" name="k" id="k" v-model="searchText" list="tags" placeholder="Search by Tags">
-				</div>
 					<!-- /search form -->
-
-  			<div class="row">
   				<ul class="sort-destination isotope" data-sort-id="isotope-list" >
   					<li v-for="trainer in orderBy(filterBy(trainers, searchText), sortAttribute, sortAscending)" v-bind:key="trainer.id">
   						<div class="item-box">
@@ -34,8 +30,6 @@
   						</div>
   					</li>
   				</ul>
-  			</div><!-- /.masonry-container -->
-
   			<!-- CALLOUT -->
   			<div class="bs-callout text-center nomargin-bottom">
   				<h3>Have the drive to train? Be part of <strong>Sparq Team</strong>!<a href="#/trainerssignup" target="_blank" class="btn btn-primary btn-lg">Ok, let's do it!</a></h3>

@@ -6,25 +6,17 @@
 
         <!-- PAGE TITLE -->
         <header id="page-title">
-          <div class="container">
-            <ul class="breadcrumb">
-              <li><a href="index.html">Home</a></li>
-              <li class="active">Trainer Sign In</li>
-            </ul>
-          </div>
+         <li><a href="index.html">Home</a></li>
+         <li class="active">Trainer Sign In</li>
         </header>
 
 
         <section class="container">
 
-          <div class="row">
-
             <!-- LOGIN -->
-            <div class="col-md-6">
-
               <h2>Sign <strong>In</strong></h2>
                 <p>{{errors}}</p>
-              <form class="white-row" v-on:submit.prevent="submit()">
+              <form v-on:submit.prevent="submit()">
 
                 <!-- alert failed -->
                 <div class="alert alert-danger" v-if="errors == 'Password confirmation doesn\'t match Password'">
@@ -37,37 +29,25 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>E-mail Address</label>
-                      <input type="text" v-model="email" class="form-control">
-                    </div>
+                  <div class="form-group">
+                    <label>E-mail Address</label>
+                    <input type="text" v-model="email" class="form-control">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" v-model="password" class="form-control">
-                    </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" v-model="password" class="form-control">
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <span class="remember-box checkbox">
-                      <label for="rememberme">
-                        <input type="checkbox" id="rememberme" name="rememberme">Remember Me
-                      </label>
-                    </span>
-                  </div>
-                  <div class="col-md-6">
-                    <input type="submit" value="Sign In" class="btn btn-primary pull-right" data-loading-text="Loading...">
-                  </div>
-                </div>
-              </form>
-            </div>
+                <span class="remember-box checkbox">
+                  <label for="rememberme">
+                    <input type="checkbox" id="rememberme" name="rememberme">Remember Me
+                  </label>
+                </span>
+                <input type="submit" value="Sign In" class="btn btn-primary pull-right" data-loading-text="Loading...">
             <!-- /LOGIN -->
-          </div>
+              </form>
           <p>
             Don't have an account yet? <router-link to="/trainerssignup">Ignite a Sparq today!</router-link>
           </p>
@@ -79,6 +59,7 @@
     <!-- /WRAPPER -->
   </div>
 </template>
+
 <style>
 
 </style>
