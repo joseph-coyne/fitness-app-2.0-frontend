@@ -2,11 +2,6 @@
   <div class="trainers-edit">
       <h1>Edit Profile</h1>
 
-        <ul class="breadcrumb">
-          <li><router-link to="/trainers/me">Profile</router-link></li>
-            <li class="active">Edit</li>
-        </ul>
-
         <form id="contactForm" v-on:submit.prevent="submit()">
           <label>First Name</label>
           <input type="text" v-model="firstName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name">
@@ -39,12 +34,12 @@
               <textarea maxlength="5000" rows="10" v-model="bio" class="form-control" name="bio" id="contact_message">{{trainer.bio}}</textarea>
 
                 <label>Workout Tags</label>
-                  <vue-tags-input name="user_tags"
-                    v-model="tag"
-                    :tags="tags"
-                    :autocomplete-items="filteredItems"
-                    @tags-changed="newTags => tags = newTags">
-                  </vue-tags-input>
+                 <vue-tags-input name="user_tags"
+                  v-model="tag"
+                  :tags="tags"
+                  :autocomplete-items="filteredItems"
+                  @tags-changed="newTags => tags = newTags">
+                 </vue-tags-input>
 
                   <input id="contact_submit" type="submit" value="Save" class="btn btn-primary btn-lg" data-loading-text="Loading...">
                   <button id="trainerdelete" type="button" class="btn btn-danger" v-on:click="deleteTrainer(trainer)">Delete Account</button>
@@ -52,9 +47,7 @@
           <!-- /FORM -->
 
           <!-- INFO -->
-              <figure>
-                <img class="radius6 img-responsive" :src="trainer.avatar" alt="" />
-              </figure>
+                <img :src="trainer.avatar" alt="" />
           <!-- /INFO -->
     <!-- /WRAPPER -->
   </div>
