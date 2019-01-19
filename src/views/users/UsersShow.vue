@@ -1,138 +1,89 @@
 <template>
 
- <div class="users-show">
+  <div class="users-show">
+  <!-- user meals -->
   
-      <h1>profile page</h1>
+  <div>
+    <h1>Welcome: {{user.username}}</h1>
+    <!-- <div>{{mealTypes()}}</div> -->
+    <!-- drop down meal list -->
+      <h2>Breakfast</h2>
+      <select>
+        <option v-for="meal in breakfast"><span >{{meal.name}}</span></option>
+      </select> 
+
+      <h2>Snack</h2>
+      <select>
+        <option v-for="meal in snack"><span >{{meal.name}}</span></option>
+      </select>
+
+      <h2>Lunch</h2>
+      <select>
+        <option v-for="meal in lunch"><span >{{meal.name}}</span></option>
+      </select>
+
+      <h2>Snack</h2>
+      <select>
+        <option v-for="meal in snack"><span >{{meal.name}}</span></option>
+      </select>
+
+      <h2>Dinner</h2>
+      <select>
+        <option v-for="meal in dinner"><span >{{meal.name}}</span></option>
+      </select> 
+  </div>
+  <!-- v-if="meal.meal_type === 'breakfast'" -->
+
+  <!-- user info -->
+  <img :src="user.avatar">              
+  <h2>{{ user.name }} </h2> 
+  <p> Badge: {{user.badge_name}} </p>
+  <p> {{ user.bio }} </p>
+  <p> Level: {{user.level}} </p>
+  <h4> <!-- <i class="fa fa-phone mr-5 o-4"></i> --> <strong> Progress: {{user.progress}}%</strong></h4>
+  <p> <i></i><a>{{user.email}}</a> </p>
+  <button> <router-link to="/users/me/edit">Edit</router-link> </button>
+
+    <!-- create meal modal -->
+  <h5>Create Meal</h5>
+  <button type="button" data-dismiss="modal">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  
+    <form v-on:submit.prevent="submit()">
+      <h1>Create Meal</h1>
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
+     
+        <label>Meal Name:</label> 
+        <input type="text" v-model="mealName">
+    
       
-            <!-- modal button will be breakfast -->
-            <h4>Breakfast</h4>
-            <!-- after meal is created it will populate the meal name -->
-              <!-- Button trigger modal -->
-              <div>{{newMeal.name}}</div>
-              <button>
-                Add Meal
-              </button>
-            <h4>Snack</h4>
-              <div>{{newMeal.name}}</div>
-              <button>
-                Add Meal
-              </button>    
-            <h4>Lunch</h4>
-              <button>
-                Add Meal
-              </button>        
-            <h4>Snack</h4>
-              <button>
-                Add Meal
-              </button>    
-            <h4>Dinner</h4>
-              <button>
-                Add Meal
-              </button>
-          
+        <label>Search Ingredient:</label> 
         
-           <h4>Macronutrients</h4>
-           <p>Protein: </p>
-           <p>Carbohydrates: </p>
-           <p>Fats: </p>
-
-           <h4>Micronutrients</h4>
-
-           <h5>Total Daily Nutrients: </h5>
+            <vue-tags-input
+              v-model="tag"
+              :tags="tags"
+              :autocomplete-items="filteredItems"
+              @tags-changed="newTags => tags = newTags">
+            </vue-tags-input>
+            <p>{{tags}}</p>
          
-          
-             
-                <img :src="user.avatar">
-             
-
-
       
-
+     
+        <!-- user types directions for creating meal -->
+        <textarea placeholder="Add Instructions for your meal" v-model="instructions">
+        </textarea>
       
-          <h2>
-             {{ user.name }} </h2>
-          
-          <p > Badge:
-             {{user.badge_name}}
-          </p>
+      <input type="submit" value="Add Meal">
+    </form>
+  
 
-          <p>
-             {{ user.bio }}
-          </p>
+  <button type="button"  data-dismiss="modal">Close</button>
+  <button  type="button"  data-dismiss="modal">Add Meal</button>
 
-          <p>
-             Level: {{user.level}}
-          </p>
-
-          <h4>
-             <!-- <i class="fa fa-phone mr-5 o-4"></i> --> <strong> Progress: {{user.progress}}%</strong>
-          </h4>
-
-          <p>
-             <i></i><a>{{user.email}}</a>
-          </p>
-          <button> <router-link to="/users/me/edit">Edit</router-link> </button>
-
-      
-
-
-   
-      
-              <h5>Create Meal</h5>
-              <button type="button" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            
-              
-                <form v-on:submit.prevent="submit()">
-                  <h1>Create Meal</h1>
-                  <ul>
-                    <li v-for="error in errors">{{ error }}</li>
-                  </ul>
-                 
-                    <label>Meal Name:</label> 
-                    <input type="text" v-model="mealName">
-                
-                  
-                    <label>Search Ingredient:</label> 
-                    
-                        <vue-tags-input
-                          v-model="tag"
-                          :tags="tags"
-                          :autocomplete-items="filteredItems"
-                          @tags-changed="newTags => tags = newTags">
-                        </vue-tags-input>
-                        <p>{{tags}}</p>
-                     
-                  
-                 
-                    <!-- user types directions for creating meal -->
-                    <textarea placeholder="Add Instructions for your meal" v-model="instructions">
-                    </textarea>
-                  
-                  <input type="submit" value="Add Meal">
-                </form>
-              
-            
-              <button type="button"  data-dismiss="modal">Close</button>
-              <button  type="button"  data-dismiss="modal">Add Meal</button>
-            
-      <!-- end modal -->
-      
-
-      <!-- current user meals -->
-      <!-- <div v-for="meal in meals">
-        <p>{{meal.name}}</p>
-        <p>{{meal.recipe_instructions}}</p>
-      </div> -->
-      <!-- end current user meals -->
-
-      <!-- meals search -->
-      <input type="button" value="My Meals"> 
-      <input type="button" value="All Meals">
-
-      <!-- end meals search -->
-       
  </div>
 </template>
 
@@ -152,6 +103,10 @@
       return {
         user: {},
         meals: [],
+        breakfast: [],
+        lunch: [],
+        dinner: [],
+        snack: [],
         newMeal: "",
         lastThreeMeals: [],
         // data for new meal
@@ -173,42 +128,28 @@
     },
     created: function() {
       axios.get("http://localhost:3000/api/users/me").then(response => {
-        // console.log(response.data);
         this.user = response.data;
-        // this.lastThreeMeals = this.user.meals.slice(this.user.meals.length - 3, this.user.meals.length);
-        this.lastThreeMeals = [
-          {id: 1, name: "New York Strip and baked potato", recipe_instructions: "Grill steak for 8 minutes on each side make sure it is well done, then bake potato for 45 minutes in oven. Serve and Enjoy", user_id: 3, nutrients: {
-            carbohydrates: 26,
-            fat: 7,
-            folate: 1,
-            iron: 1,
-            magnesium: 48,
-            protein: 28,
-            vitamin_d: 0,
-            zinc: 4
-          }},
-          {id: 2, name: "Chicken and rice", recipe_instructions: "grill chicken breast for 5 minutes each side fliping it 2 times, boil water and add rice letting simmer for 15 minutes. Serve and enjoy", user_id: 3, nutrients: {
-            carbohydrates: 45,
-            fat: 7,
-            folate: 2,
-            iron: 3,
-            magnesium: 34,
-            protein: 29,
-            vitamin_d: 60,
-            zinc: 4
-          }},
-          {id: 3, name: "Ground Turkey Bowl", recipe_instructions: "Brown the ground turkey add seasoning then cook rice and mix in. Serve and enjoy!", user_id: 3, nutrients: {
-            carbohydrates: 45,
-            fat: 11,
-            folate: 3,
-            iron: 1,
-            magnesium: 3,
-            protein: 20,
-            vitamin_d: 85,
-            zinc: 4
-          }}
-        ];
-        this.totalNutrients();
+      });
+
+      axios.get("http://localhost:3000/api/meals").then(response => {
+        this.meals = response.data;
+        this.meals.forEach((meal) => {
+          const breakfastType = meal.meal_type === "breakfast";
+          const lunchType = meal.meal_type === "lunch";
+          const dinnerType = meal.meal_type === "dinner";
+          const snackType = meal.meal_type === "snack";
+
+          if (breakfastType) {
+            this.breakfast.push(meal);
+          } else if (lunchType) {
+            this.lunch.push(meal);
+          } else if (dinnerType) {
+            this.dinner.push(meal);
+          } else if (snackType) {
+            this.snack.push(meal);
+          }
+        });
+        
       });
 
       // axios request for ingredients data
@@ -265,6 +206,26 @@
           this.totalFolate += meal.nutrients["folate"];
           this.totalVitaminD += meal.nutrients["vitamin_d"];
         }.bind(this));
+      },
+
+      mealTypes: () => {
+        console.log('m', this.meals);
+        // this.meals.forEach((meal) => {
+        //   const breakfastType = meal.meal_type === "breakfast";
+        //   const lunchType = meal.meal_type === "lunch";
+        //   const dinnerType = meal.meal_type === "dinner";
+        //   const snackType = meal.meal_type === "snack";
+
+        //   if (breakfastType) {
+        //     this.breakfast.push(meal);
+        //   } else if (lunchType) {
+        //     this.lunch.push(meal);
+        //   } else if (dinnerType) {
+        //     this.dinner.push(meal);
+        //   } else if (snackType) {
+        //     this.snack.push(meal);
+        //   }
+        // });
       },
 
       emptyModal: function() {
