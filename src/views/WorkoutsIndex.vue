@@ -1,7 +1,5 @@
 <template>
   <div class="workouts-index">
-    <!-- <div class = "container"> -->
-
     <h1>All Workouts</h1>
     <div v-for="workout in workouts">
       <h2>{{workout.name}}</h2>
@@ -10,7 +8,6 @@
       <h5>Description: {{workout.description}}</h5>
       <h6>Level: {{workout.level}}</h6>
     </div>
-  </div>
   </div>
 </template>
 

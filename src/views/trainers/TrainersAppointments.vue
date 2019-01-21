@@ -1,89 +1,64 @@
 <template>
   <div class="trainers-appointments">
+    <ul v-for="appointment in appointments">
+      <img class="img-responsive" :src="appointment.user_image" width="263" height="263" alt="" data-toggle="modal" data-target="#myModal" v-on:click="setCurrentAppointment(appointment)">
+      <h4>{{appointment.time | momentshow }}</h4>
+      <small>{{appointment.user_name}}</small>
+    </ul>
 
-        <section class="container">
+  <form v-on:submit.prevent="submit()">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
 
-      
-          <div class="row">
+        <div class="modal-content modal-lg">
 
-            <ul v-for="appointment in appointments">
+          <div class="modal-header"><!-- modal header -->
 
-              <li class="isotope-item col-md-3 ceo" ><!-- item 1 -->
-                <div class="item-box fixed-box">
-                  <figure>
-                    <img class="img-responsive" :src="appointment.user_image" width="263" height="263" alt="" data-toggle="modal" data-target="#myModal" v-on:click="setCurrentAppointment(appointment)">
-                  </figure>
-                  <div id="appointment-item" class="item-box-desc">
-                    <h4>{{appointment.time | momentshow }}</h4>
-                    <small class="styleColor">{{appointment.user_name}}</small>
-                    <div class="text-center">
-                    </div>
-                  </div>
-                </div>
-              </li>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Edit Appointment</h4>
+          </div><!-- /modal header -->
 
-            </ul>
+          <!-- modal body -->
+          <div id="editmodal" class="modal-body">
+            Should they bring anything?:
+            <vue-tags-input
+              v-model="tag"
+              :tags="tags"
+              @tags-changed="newTags => tags = newTags"
+              placeholder="what to bring:">
+            </vue-tags-input>
+            <br>
+            Any preparation advice you want to share?:
+            <textarea rows="4" class="form-control" v-model="info"></textarea>
+            <br>
+            How difficult will this workout be?
+            <star-rating 
+            v-model="rating"
+            star-size="25"
+            active-color="#FF7F50"
+            :show-rating="false">
+            </star-rating>
+          </div>
 
-          </div><!-- /.masonry-container -->
-          
-          <form v-on:submit.prevent="submit()">
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
+          <!-- /modal body -->
 
-                <div class="modal-content modal-lg">
+          <div class="modal-footer"><!-- modal footer -->
+            <button type="button" class="btn btn-primary" disabled="disabled">Message</button>
+            <input class="btn btn-primary" type="submit" value="Save Changes"></input>
 
-                  <div class="modal-header"><!-- modal header -->
+          </div><!-- /modal footer -->
+        
 
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Edit Appointment</h4>
-                  </div><!-- /modal header -->
-
-                  <!-- modal body -->
-                  <div id="editmodal" class="modal-body">
-                    Should they bring anything?:
-                    <vue-tags-input
-                      v-model="tag"
-                      :tags="tags"
-                      @tags-changed="newTags => tags = newTags"
-                      placeholder="what to bring:">
-                    </vue-tags-input>
-                    <br>
-                    Any preparation advice you want to share?:
-                    <textarea rows="4" class="form-control" v-model="info"></textarea>
-                    <br>
-                    How difficult will this workout be?
-                    <star-rating 
-                    v-model="rating"
-                    star-size="25"
-                    active-color="#FF7F50"
-                    :show-rating="false">
-                    </star-rating>
-                  </div>
-
-                  <!-- /modal body -->
-
-                  <div class="modal-footer"><!-- modal footer -->
-                    <button type="button" class="btn btn-primary" disabled="disabled">Message</button>
-                    <input class="btn btn-primary" type="submit" value="Save Changes"></input>
-
-                  </div><!-- /modal footer -->
-                
-
-                </div>
-              </div>
-            </div>
-          </form>
-
-
-        </section>
-
+        </div>
+      </div>
+    </div> 
+    </form>
   </div>
 </template>
+
 <style>
-div.trainers-appointments {
-  margin-top: 85px;
-}
 </style>
+
 <script>
 import axios from "axios";
 import moment from "moment";

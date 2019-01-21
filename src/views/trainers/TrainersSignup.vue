@@ -1,81 +1,34 @@
 <template>
   <div class="trainers-signup">
-    <!-- WRAPPER -->
-      <div id="wrapper">
-        <div id="shop">
-          <!-- PAGE TITLE -->
-          <header id="page-title">
-            <div class="container">
-              <h1>Sign up</h1>
-              <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Sign up</li>
-              </ul>
-            </div>
-          </header>
-          
-          <section class="container">
+    <h2>Create <strong>Account</strong></h2>
 
-            <div class="row">
-
-              <!-- REGISTER -->
-                <h2>Create <strong>Account</strong></h2>
-
-                <form v-on:submit.prevent="submit()">
-                  <!-- alert failed -->
-                  <div v-if="errors == 'Password can\'t be blank'" class="alert alert-danger">
-                    <i class="fa fa-frown-o"></i> 
-                    <strong>Password</strong> cannot be blank!
-                  </div>                  
-                  <div v-else-if="errors == 'Email can\'t be blank'" class="alert alert-danger">
-                    <i class="fa fa-frown-o"></i> 
-                    <strong>Email</strong> cannot be blank!
-                  </div>
-
-                  <div class="row">
-                    <label>E-mail Address</label>
-                    <input type="text" v-model="email" class="form-control">
-                  </div>
-                  <div class="row">
-                   <label>Password</label>
-                   <input type="password" v-model="password" class="form-control">
-                    <label>Re-enter Password</label>
-                     <input type="password" v-model="passwordConfirmation" class="form-control">
-                  </div>
-                  <div class="row">
-                      <input type="submit" value="Sign Up" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
-                  </div>
-
-                </form>
-
-              </div>
-              <!-- /REGISTER -->
-
-              <!-- WHY? -->
-                <h2>Make an <strong>impact</strong></h2>
-
-                  <h4>Join the Sparq team to increase your outreach to the community.</h4>
-
-                  <p>Once you're registered, you can:</p>
-                  <ul class="list-icon check">
-                    <li>Become easily discoverable by users in your area</li>
-                    <li>Grow your own business by promoting your workouts</li>
-                    <li>Offer extra services such as meal tracking</li>
-                    <li>Some other stuff probably</li>
-                    <li>Connect with the Sparq community.</li>
-                  </ul>
-
-                  <hr class="half-margins" />
-
-                  <p>
-                    Already have an account?
-                     <router-link to="/trainerslogin">Sign in</router-link>
-                  </p>
-            </section>
-
-        </div>
+    <form v-on:submit.prevent="submit()">
+      <!-- alert failed -->
+      <div v-if="errors == 'Password can\'t be blank'" class="alert alert-danger">
+        <i class="fa fa-frown-o"></i> 
+        <strong>Password</strong> cannot be blank!
+      </div>                  
+      <div v-else-if="errors == 'Email can\'t be blank'" class="alert alert-danger">
+        <i class="fa fa-frown-o"></i> 
+        <strong>Email</strong> cannot be blank!
       </div>
-    <!-- /WRAPPER -->
+
+      <div class="row">
+        <label>E-mail Address</label>
+        <input type="text" v-model="email" class="form-control">
+      </div>
+      <div class="row">
+       <label>Password</label>
+       <input type="password" v-model="password" class="form-control">
+        <label>Re-enter Password</label>
+         <input type="password" v-model="passwordConfirmation" class="form-control">
+      </div>
+      <div class="row">
+          <input type="submit" value="Sign Up" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
+      </div>
+    </form>
+    <p>Already have an account?</p>
+    <router-link to="/trainerslogin">Sign in</router-link>
   </div>
 </template>
 
