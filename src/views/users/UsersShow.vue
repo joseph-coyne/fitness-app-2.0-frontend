@@ -108,8 +108,6 @@
         dinner: [],
         snack: [],
         newMeal: "",
-        lastThreeMeals: [],
-        // data for new meal
         mealName: "",
         instructions: "",
         errors: [],
@@ -173,12 +171,7 @@
         axios
           .post("http://localhost:3000/api/meals", params)
           .then(response => {
-            this.lastThreeMeals.shift();
-            this.lastThreeMeals.push(response.data);
-            this.totalNutrients();
-            this.mealName = "";
-            this.tag = "";
-            this.instructions = "";
+            this.$router.push("/users/me");
           })
           .catch(error => {
             this.errors = error.response.data.errors;
@@ -206,26 +199,6 @@
           this.totalFolate += meal.nutrients["folate"];
           this.totalVitaminD += meal.nutrients["vitamin_d"];
         }.bind(this));
-      },
-
-      mealTypes: () => {
-        console.log('m', this.meals);
-        // this.meals.forEach((meal) => {
-        //   const breakfastType = meal.meal_type === "breakfast";
-        //   const lunchType = meal.meal_type === "lunch";
-        //   const dinnerType = meal.meal_type === "dinner";
-        //   const snackType = meal.meal_type === "snack";
-
-        //   if (breakfastType) {
-        //     this.breakfast.push(meal);
-        //   } else if (lunchType) {
-        //     this.lunch.push(meal);
-        //   } else if (dinnerType) {
-        //     this.dinner.push(meal);
-        //   } else if (snackType) {
-        //     this.snack.push(meal);
-        //   }
-        // });
       },
 
       emptyModal: function() {
