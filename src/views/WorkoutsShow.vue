@@ -1,16 +1,12 @@
 <template>
-
   <div class="workouts-show">
-    <div class="container">
-      <!-- <h1>{{workout.id}}</h1> -->
-      <!-- <h2>{{ workout.name }}</h2> -->
-      <!-- <h3>{{ workout.time }}</h3> -->
-      <img v-bind:src="workout.image">
-      <!-- <h4>{{ workout.description }}</h4>
-      <h5>{{workout.level}}</h5> -->
-
-      <a v-on:click="completeWorkout()">Completed</a>
-    </div>
+    <!-- <h1>{{workout.id}}</h1> -->
+    <!-- <h2>{{ workout.name }}</h2> -->
+    <!-- <h3>{{ workout.time }}</h3> -->
+    <img v-bind:src="workout.image">
+    <!-- <h4>{{ workout.description }}</h4>
+    <h5>{{workout.level}}</h5> -->
+    <a v-on:click="completeWorkout()">Completed</a>
   </div>
 </template>
 
