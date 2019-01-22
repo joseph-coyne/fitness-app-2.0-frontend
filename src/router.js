@@ -94,8 +94,20 @@ export default new Router({
       component: Logout
     },
 
-    { path: "/meals", name: "meals-index", component: MealsIndex },
-    { path: "/workouts/daily", name: "workouts-show", component: WorkoutsShow },
-    { path: "/workouts", name: "workouts-index", component: WorkoutsIndex }
+    {
+      path: "/meals",
+      name: "meals-index",
+      component: MealsIndex
+    },
+    {
+      path: "/workouts/daily",
+      name: "workouts-show",
+      component: WorkoutsShow
+    },
+    {
+      path: "/workouts",
+      name: "workouts-index",
+      component: WorkoutsIndex
+    }
   ]
 });
