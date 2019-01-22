@@ -1,5 +1,5 @@
 <template>
-  <div class="meals-index">
+  <div class="trainers-meals">
 
     <!-- create meal start -->
     <div>
@@ -36,6 +36,7 @@
     </div>
     <!-- create meal end -->
 
+<!-- use vue-select to allow traienr to go through meals and select already made meal to send to client -->
     <h2>My Meals</h2>
     <!-- display meals start -->
     <div v-for="meal in meals">
@@ -110,7 +111,7 @@
         axios
           .post("http://localhost:3000/api/meals", params)
           .then(response => {
-            this.$router.push("/users/me");
+            this.$router.push("/trainers/me");
           })
           .catch(error => {
             this.errors = error.response.data.errors;
