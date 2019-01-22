@@ -19,7 +19,7 @@ export default {
     };
   },
   created: function() {
-    axios.get("/api/workouts/daily")
+    axios.get("http://localhost:3000/api/workouts/daily")
       .then(response => {
         this.workout = response.data;
         console.log(this.workout);
@@ -28,7 +28,7 @@ export default {
   methods: {
     completeWorkout: function() {
       var params = {workout_id: this.workout.id};
-      axios.post("/api/user_workouts", params).then(response => {
+      axios.post("http://localhost:3000/api/user_workouts", params).then(response => {
         
         console.log(response.data);
         this.$router.push("/users/me");
