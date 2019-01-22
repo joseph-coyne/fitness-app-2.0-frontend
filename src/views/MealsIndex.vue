@@ -1,4 +1,4 @@
-t<template>
+<template>
   <div class="meals-index">
 
     <!-- create meal start -->
