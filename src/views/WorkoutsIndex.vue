@@ -1,8 +1,7 @@
 <template>
   <div class="workouts-index">
     <h1>All Workouts</h1>
-    <input type="text" name="k" v-model="searchText" list="workouts" placeholder="Search workouts">    
-    <div v-for="workout in orderBy(filterBy(workouts, searchText), sortAttribute, sortAscending)" v-bind:key="workout.id">
+    <div v-for="workout in workouts">
       <h2>{{workout.name}}</h2>
       <h3>Time: {{workout.time}}</h3>
       <h4>Image: <img :src="workout.image" height="200" width="100" alt=""></h4>
