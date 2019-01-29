@@ -1,11 +1,11 @@
 <template>
   <div class="users-login">
-    <!-- WRAPPER -->
+    
     
 
       
 
-        <!-- PAGE TITLE -->
+       
         <header id="page-title">
          
             
@@ -29,31 +29,16 @@
 
                 <!-- alert failed -->
                 <div v-if="errors">
-                   
                   Wrong <strong>E-mail Address</strong> or <strong>Password</strong>!
                 </div>
-
-                
-                  
-                    
-                      <label>E-mail Address</label>
-                      <input type="text" v-model="email">
-                    
-                
-                  
-                    
-                      <label>Password</label>
-                      <input type="password" v-model="password">
-                   
-                
-                      <label for="rememberme">
-                        <input type="checkbox" id="rememberme" name="rememberme">Remember Me
-                      </label>
-                    
-                  
-                  
-                    <input type="submit" value="Sign In" data-loading-text="Loading...">
-
+                <label>E-mail Address</label>
+                <input type="text" v-model="email">
+                <label>Password</label>
+                <input type="password" v-model="password">
+                <label for="rememberme">
+                  <input type="checkbox" id="rememberme" name="rememberme">Remember Me
+                </label>
+                <input type="submit" value="Sign In" data-loading-text="Loading...">
               </form>
 
             
