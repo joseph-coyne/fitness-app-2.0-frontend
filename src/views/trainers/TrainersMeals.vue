@@ -50,7 +50,7 @@
     </div>
     <!-- create meal end -->
 
-<!-- use vue-select to allow traienr to go through meals and select already made meal to send to client -->
+
     <h2>My Meals</h2>
     <p>{{meals}}</p>
     <!-- display meals start -->
