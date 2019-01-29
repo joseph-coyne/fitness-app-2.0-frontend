@@ -12,10 +12,12 @@
         <label>Meal Name:</label> 
         <input type="text" v-model="mealName" placeholder="name">
 
-        <label>Meal Type:</label> 
-        <v-select v-model="mealType" :options="options"></v-select>
-        <p>{{mealType}}</p>
-        <!-- <input type="text" v-model="mealType" placeholder="breakfast"> -->
+         <label>Meal Type:</label> 
+        <select v-model="mealType">
+          <option v-for="option in options">
+            {{option.type}}
+          </option>
+        </select>
     
         <label>Search Ingredient:</label> 
         <vue-tags-input
@@ -53,8 +55,7 @@
   import Vue from 'vue';
   import axios from 'axios';
   import VueTagsInput from '@johmun/vue-tags-input';
-  import vSelect from 'vue-select';
-  Vue.component('v-select', vSelect);
+  
 
   export default {
 
@@ -75,10 +76,10 @@
         tags: [],
         autocompleteItems: [],
         options: [
-          "breakfast",
-          "lunch",
-          "dinner",
-          "snack",
+          {type: "breakfast"},
+          {type: "lunch"},
+          {type: "dinner"},
+          {type: "snack"}
         ]
       };
     },

@@ -3,32 +3,13 @@
 
     <!-- create meal start -->
     <div>
-      <!-- users associated with trainer -->
-      <!-- <p v-for="client in clientNames(this.clients, 'id')"><span v-on:click="userId = client.id">{{client.full_name}}</span></p> -->
-
-           
-      <!-- <input type="text" v-model="userId" > -->
+      
       <form v-on:submit.prevent="submit()">
         <h1>Create Meal</h1>
         <ul>
           <li v-for="error in errors">{{ error }}</li>
         </ul>
 
-        <!-- filter user -->
-        <!-- <input type="text" name="k" id="k" v-model="searchText" list="tags" placeholder="Search by Tags"> -->
-        <!-- /search form -->
-        <!-- <ul>
-          <li v-for="trainer in orderBy(filterBy(trainers, searchText), sortAttribute, sortAscending)" v-bind:key="trainer.id">
-            <router-link v-bind:to="'/trainers/' + trainer.id"><img :src="(trainer.avatar)" width="263" height="395" alt=""></router-link>
-            <h4>{{trainer.first_name}} {{trainer.last_name}}</h4>
-            <p>{{trainer.location}}</p>
-
-            use this line to set v-model userId = client.id and to display client.full_name
-            <span v-for="tag in trainer.tags" id="tags" v-on:click="searchText = tag.name">{{tag.name}}</span>
-          </li>
-        </ul> -->
-        <!-- filter user end -->
-       
         <label>Meal Name:</label> 
         <input type="text" v-model="mealName" placeholder="name">
         <p>{{mealName}}</p>
@@ -89,8 +70,6 @@
   import Vue from 'vue';
   import axios from 'axios';
   import VueTagsInput from '@johmun/vue-tags-input';
-  import vSelect from 'vue-select';
-  Vue.component('v-select', vSelect);
   import Vue2Filters from 'vue2-filters';
 
   export default {
@@ -166,11 +145,11 @@
           });
       },
 
-      // emptyModal: () => {
-      //   this.mealName = "";
-      //   this.tag = "";
-      //   this.instructions = "";
-      // },
+      emptyModal: () => {
+        this.mealName = "";
+        this.tag = "";
+        this.instructions = "";
+      },
 
       clientNames(clients, id) {
 
