@@ -89,8 +89,6 @@
   import Vue from 'vue';
   import axios from 'axios';
   import VueTagsInput from '@johmun/vue-tags-input';
-  import vSelect from 'vue-select';
-  Vue.component('v-select', vSelect);
   import Vue2Filters from 'vue2-filters';
 
   export default {
