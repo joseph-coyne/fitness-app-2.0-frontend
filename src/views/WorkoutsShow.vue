@@ -1,6 +1,6 @@
 <template>
   <div class="workouts-show">
-    <!-- <h1>{{workout.id}}</h1> -->
+    <h1>{{workout.id}}</h1>
     <!-- <h2>{{ workout.name }}</h2> -->
     <!-- <h3>{{ workout.time }}</h3> -->
     <img v-bind:src="workout.image">
@@ -27,7 +27,9 @@ export default {
   },
   methods: {
     completeWorkout: function() {
-      var params = {workout_id: this.workout.id};
+      var params = {
+        workout_id: this.workout.id
+      };
       axios.post("http://localhost:3000/api/user_workouts", params).then(response => {
         
         console.log(response.data);
