@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-danger" color-on-scroll="500">
+    <nav class="navbar navbar-expand-lg bg-danger">
       <div class="container">
         <a class="navbar-brand" href="/">Sparq Fitness</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,19 +87,31 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
-                <div class="profile-photo-small" v-if="isUser()">
-                  <img :src="user.avatar" alt="Circle Image" class="img-circle img-responsive img-no-padding">
+            <li class="nav-item dropdown" v-if="isUser()">
+              <a href="/users/me" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
+                <div class="profile-photo-small">
+                  <img :src="(user.avatar)" alt="User Avatar" class="img-circle img-responsive img-no-padding">
                 </div>                
-                <div class="profile-photo-small" v-if="isTrainer()">
-                  <img :src="trainer.avatar" alt="Circle Image" class="img-circle img-responsive img-no-padding">
-                </div>
-              </a>
+              </a>              
               <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                <div class="dropdown-header">User Name</div>
-                <router-link v-if="isUser()" class="dropdown-item" to="/users/me">My Profile</router-link>
-                <router-link v-if="isTrainer()" class="dropdown-item" to="/trainers/me">My Profile</router-link>
+                <div class="dropdown-header">{{user.full_name}}</div>
+                <router-link class="dropdown-item" to="/users/me">My Profile</router-link>
+                <a class="dropdown-item" href="#paper-kit">Another action</a>
+                <a class="dropdown-item" href="#paper-kit">Something else here</a>
+                <a class="dropdown-item" href="#paper-kit">Separated link</a>
+                <div class="dropdown-divider"></div>
+                <router-link class="dropdown-item" to="/logout" v-if="isLoggedIn()">Logout</router-link>
+              </ul>
+            </li>            
+            <li class="nav-item dropdown" v-if="isTrainer()">
+              <a href="/trainers/me" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
+                <div class="profile-photo-small">
+                  <img :src="(trainer.avatar)" alt="trainer Avatar" class="img-circle img-responsive img-no-padding">
+                </div>                
+              </a>              
+              <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                <div class="dropdown-header">{{trainer.full_name}}</div>
+                <router-link class="dropdown-item" to="/trainers/me">My Profile</router-link>
                 <a class="dropdown-item" href="#paper-kit">Another action</a>
                 <a class="dropdown-item" href="#paper-kit">Something else here</a>
                 <a class="dropdown-item" href="#paper-kit">Separated link</a>
@@ -112,25 +124,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" v-else="isLoggedOut()">
           <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-             <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
-               <p class="nav-link">Sign In</p>
-             </a>
-             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                <form v-on:submit.prevent="submit()">
-                  <!-- alert failed -->
-                  <div v-if="errors">
-                    Wrong <strong>E-mail Address</strong> or <strong>Password</strong>!
-                  </div>
-
-                  <input class="form-control no-border" type="text" placeholder="Email" v-model="email">
-                  <div class="dropdown-divider"></div>
-                  <input class="form-control no-border" type="password" placeholder="Password" v-model="password">
-                  <input class="btn btn-outline-default btn-round" type="submit" value="Sign In" data-loading-text="Loading...">
-                </form>
-               <div class="dropdown-divider"></div>
-               <router-link class="dropdown-item" to="/logout" v-if="isLoggedIn()">Logout</router-link>
-             </ul>
-             <!-- <router-link class="nav-link" to="/userslogin">Sign In</router-link> -->
+              <router-link class="nav-link" to="/userslogin">Sign In</router-link>
            </li>                  
           </ul>
         </div>
@@ -168,8 +162,7 @@
       axios.get("http://localhost:3000/api/users/me").then(response => {
         this.user = response.data;
       });
-    },    
-    created: function() {
+      
       axios.get("http://localhost:3000/api/trainers/me").then(response => {
         this.trainer = response.data;
       });
