@@ -20,11 +20,9 @@
                   
                   <p>{{currentAppointment.trainer_first_name}} {{currentAppointment.trainer_last_name}} <strong>|</strong> Strength Training</p>
                   <p> {{ currentAppointment.strftime }}</p>
-                  
-                    <button type="button"  disabled="disabled">Message</button>
-                    <button href="#"  data-dismiss="modal" data-toggle="modal" data-target="#myModal">Edit Appointment</button>
-                  
               
+                <button type="button"  disabled="disabled">Message</button>
+                <button href="#"  data-dismiss="modal" data-toggle="modal" data-target="#myModal">Edit Appointment</button>
                 <div>
                   <h3>Trainer Notes:</h3>
                   <blockquote> {{currentAppointment.info}}</blockquote>
