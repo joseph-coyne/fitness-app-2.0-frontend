@@ -3,7 +3,6 @@
 
     <!-- create meal start -->
     <div>
-
       <form v-on:submit.prevent="submit()">
         <h1>Create Meal</h1>
         <ul>
@@ -65,6 +64,7 @@
 
     data: function() {
       return {
+        user: {},
         meals: [],
         newMeal: "",
         mealName: "",
@@ -83,8 +83,13 @@
       };
     },
     created: function() {
+      axios.get("http://localhost:3000/api/users/me").then(response => {
+        console.log(response.data);
+        this.user = response.data;
+      });
+
       axios.get("http://localhost:3000/api/meals").then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         this.meals = response.data;
       });
 
@@ -106,6 +111,7 @@
           meal_type: this.mealType,
           ingredients: this.tags.map(a => a.text),
           recipe_instructions: this.instructions,
+          user_id: this.user.id
         };
         axios
           .post("http://localhost:3000/api/meals", params)
