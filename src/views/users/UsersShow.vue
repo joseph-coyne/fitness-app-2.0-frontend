@@ -5,6 +5,7 @@
   <!-- user meals -->
   <div>
     <h1>Welcome: {{user.username}}</h1>
+    <h1>{{meals}}</h1>
     
     <h2>Breakfast</h2>
     <select>
@@ -73,7 +74,9 @@
     },
     created: function() {
       axios.get("http://localhost:3000/api/users/me").then(response => {
+        console.log(response.data);
         this.user = response.data;
+        console.log("meals", this.user.meals);
       });
 
       axios.get("http://localhost:3000/api/meals").then(response => {

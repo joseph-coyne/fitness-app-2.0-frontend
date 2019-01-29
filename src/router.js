@@ -7,6 +7,7 @@ import UsersEdit from "./views/users/UsersEdit.vue";
 import LeaderBoardIndex from "./views/LeaderBoardIndex.vue";
 import UsersAppointments from "./views/users/UsersAppointments.vue";
 import TrainersIndex from "./views/trainers/TrainersIndex.vue";
+import TrainersMeals from "./views/trainers/TrainersMeals.vue";
 import TrainersShow from "./views/trainers/TrainersShow.vue";
 import TrainersAppointments from "./views/trainers/TrainersAppointments.vue";
 import TrainersSignup from "./views/trainers/TrainersSignup.vue";
@@ -68,6 +69,11 @@ export default new Router({
       path: "/trainersappointments",
       name: "trainers-appointments",
       component: TrainersAppointments
+    },
+    {
+      path: "/trainersmeals",
+      name: "trainers-meals",
+      component: TrainersMeals
     },
     {
       path: "/userssignup",

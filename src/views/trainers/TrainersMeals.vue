@@ -1,18 +1,20 @@
 <template>
-  <div class="meals-index">
+  <div class="trainers-meals">
 
     <!-- create meal start -->
     <div>
+      
       <form v-on:submit.prevent="submit()">
         <h1>Create Meal</h1>
         <ul>
           <li v-for="error in errors">{{ error }}</li>
         </ul>
-       
+
         <label>Meal Name:</label> 
         <input type="text" v-model="mealName" placeholder="name">
+        <p>{{mealName}}</p>
 
-         <label>Meal Type:</label> 
+        <label>Meal Type:</label> 
         <select v-model="mealType">
           <option v-for="option in options">
             {{option.type}}
@@ -31,13 +33,26 @@
         <!-- user types directions for creating meal -->
         <textarea placeholder="Add Instructions for your meal" v-model="instructions">
         </textarea>
+
+        <label>Select Client</label> 
+        <select v-model="userId">
+          <option v-for="client in clientNames(this.clients, 'id')" v-bind:value="client.id">
+            {{client.full_name}}
+          </option>
+        </select>
+
+
+
+        <p>{{userId}}</p> 
         
         <input type="submit" value="Add Meal">
       </form>
     </div>
     <!-- create meal end -->
 
+
     <h2>My Meals</h2>
+    <p>{{meals}}</p>
     <!-- display meals start -->
     <div v-for="meal in meals">
       <h3>{{meal.name}}</h3>
@@ -55,22 +70,26 @@
   import Vue from 'vue';
   import axios from 'axios';
   import VueTagsInput from '@johmun/vue-tags-input';
-  
+  import Vue2Filters from 'vue2-filters';
 
   export default {
 
     components: {
       VueTagsInput,
     },
-
+    mixins: [Vue2Filters.mixin],
     data: function() {
       return {
-        user: {},
+        clients: [],
+        trainer: {},
         meals: [],
         newMeal: "",
         mealName: "",
         mealType: "",
+        searchText: "",
         instructions: "",
+        client: "",
+        userId: "",
         errors: [],
         tag: '',
         tags: [],
@@ -84,14 +103,15 @@
       };
     },
     created: function() {
-      axios.get("http://localhost:3000/api/users/me").then(response => {
-        console.log(response.data);
-        this.user = response.data;
+      axios.get("http://localhost:3000/api/meals").then(response => {
+        this.meals = response.data;
       });
 
-      axios.get("http://localhost:3000/api/meals").then(response => {
-        console.log(response.data);
-        this.meals = response.data;
+      axios.get("http://localhost:3000/api/trainers/me").then(response => {
+        this.trainer = response.data;
+        this.clients = this.trainer.users;
+        console.log("trainer", this.trainer);
+
       });
 
       // axios request for ingredients data
@@ -112,22 +132,31 @@
           meal_type: this.mealType,
           ingredients: this.tags.map(a => a.text),
           recipe_instructions: this.instructions,
-          user_id: this.user.id
+          user_id: this.userId,
+          trainer_id: this.trainer.id
         };
         axios
           .post("http://localhost:3000/api/meals", params)
           .then(response => {
-            this.$router.push("/users/me");
+            this.$router.push("/trainers/me");
           })
           .catch(error => {
             this.errors = error.response.data.errors;
           });
       },
 
-      emptyModal: function() {
+      emptyModal: () => {
         this.mealName = "";
         this.tag = "";
         this.instructions = "";
+      },
+
+      clientNames(clients, id) {
+
+        return clients.filter((client, position, user) => {
+          return user.map(mapUser => mapUser[id]).indexOf(client[id]) === position;
+        });
+
       },
 
     },
@@ -135,6 +164,8 @@
       filteredItems() {
         return this.autocompleteItems.filter(i => new RegExp(this.tag, 'i').test(i.text));
       },
+
+   
 
     },
   };
