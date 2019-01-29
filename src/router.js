@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Logout from "./views/Logout.vue";
 import UsersShow from "./views/users/UsersShow.vue";
 import UsersEdit from "./views/users/UsersEdit.vue";
+import LeaderBoardIndex from "./views/LeaderBoardIndex.vue";
 import UsersAppointments from "./views/users/UsersAppointments.vue";
 import TrainersIndex from "./views/trainers/TrainersIndex.vue";
 import TrainersMeals from "./views/trainers/TrainersMeals.vue";
@@ -48,6 +49,11 @@ export default new Router({
       path: "/trainers",
       name: "trainers-index",
       component: TrainersIndex
+    },
+    {
+      path: "/leaderboard",
+      name: "leaderboard-index",
+      component: LeaderBoardIndex
     },
     {
       path: "/trainers/:id",
