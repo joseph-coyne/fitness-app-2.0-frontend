@@ -87,14 +87,14 @@
               <div class="card card-profile card-plain">
                 <div class="card-avatar">
                   <a href="#avatar">
-                    <img src="/assets/img/faces/clem-onojeghuo-3.jpg" alt="...">
+                    <img src="https://i.imgur.com/GL0cx1C.jpg" alt="...">
                   </a>
                 </div>
                 <div class="card-body">
                   <a href="#paper-kit">
                     <div class="author">
-                      <h4 class="card-title">Henry Ford</h4>
-                      <h6 class="card-category text-muted">Product Manager</h6>
+                      <h4 class="card-title">Tayte Bicknell</h4>
+                      <h6 class="card-category text-muted">Developer</h6>
                     </div>
                   </a>
                   <p class="card-description text-center">
@@ -119,7 +119,7 @@
                   <a href="#paper-kit">
                     <div class="author">
                       <h4 class="card-title">Joseph Coyne</h4>
-                      <h6 class="card-category text-muted">Designer</h6>
+                      <h6 class="card-category text-muted">Developer</h6>
                     </div>
                   </a>
                   <p class="card-description text-center">
