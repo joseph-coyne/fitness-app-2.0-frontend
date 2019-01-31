@@ -20,7 +20,7 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/meals">My Meals</router-link> 
             </li>
-            <li class="nav-item dropdown">
+<!--             <li class="nav-item dropdown">
               <a class="btn btn-just-icon btn-warning" data-toggle="dropdown">
                 <i class="nc-icon nc-sound-wave"></i>
               </a>
@@ -78,7 +78,7 @@
                     </a>
                   </ul>
                 </li>
-                <!--      end scroll area -->
+
                 <li class="dropdown-footer">
                   <ul class="dropdown-footer-menu">
                     <li>
@@ -87,7 +87,7 @@
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> -->
             <li class="nav-item dropdown" v-if="isUser()">
               <a href="/users/me" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
                 <div class="profile-photo-small">
@@ -97,9 +97,9 @@
               <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                 <div class="dropdown-header">{{user.full_name}}</div>
                 <router-link class="dropdown-item" to="/users/me">My Profile</router-link>
-                <a class="dropdown-item" href="#paper-kit">Another action</a>
+<!--                 <a class="dropdown-item" href="#paper-kit">Another action</a>
                 <a class="dropdown-item" href="#paper-kit">Something else here</a>
-                <a class="dropdown-item" href="#paper-kit">Separated link</a>
+                <a class="dropdown-item" href="#paper-kit">Separated link</a> -->
                 <div class="dropdown-divider"></div>
                 <router-link class="dropdown-item" to="/logout" v-if="isLoggedIn()">Logout</router-link>
               </ul>

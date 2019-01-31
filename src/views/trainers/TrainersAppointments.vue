@@ -74,7 +74,7 @@ export default {
     return {
       message: "Appointments",
       time: "",
-      rating: "0",
+      rating: "",
       info: "",
       tag: "",
       tags: [],
