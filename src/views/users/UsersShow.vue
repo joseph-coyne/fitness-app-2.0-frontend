@@ -5,7 +5,6 @@
   <!-- user meals -->
   <div>
     <h1>Welcome: {{user.username}}</h1>
-    <h1>{{meals}}</h1>
     
     <h2>Breakfast</h2>
     <select>
@@ -61,22 +60,12 @@
         breakfast: [],
         lunch: [],
         dinner: [],
-        snack: [],
-        totalProtein: 0,
-        totalCarbohydrates: 0,
-        totalFat: 0,
-        totalMagnesium: 0,
-        totalZinc: 0,
-        totalIron: 0,
-        totalFolate: 0,
-        totalVitaminD: 0
+        snack: []
       };
     },
     created: function() {
       axios.get("http://localhost:3000/api/users/me").then(response => {
-        console.log(response.data);
         this.user = response.data;
-        console.log("meals", this.user.meals);
       });
 
       axios.get("http://localhost:3000/api/meals").then(response => {
@@ -101,31 +90,7 @@
       });
     },
 
-    methods: {
-
-      totalNutrients: function() {
-        
-        this.totalProtein = 0;
-        this.totalCarbohydrates = 0;
-        this.totalFat = 0;
-        this.totalMagnesium = 0;
-        this.totalZinc = 0;
-        this.totalIron = 0;
-        this.totalFolate = 0;
-        this.totalVitaminD = 0;
-
-        this.lastThreeMeals.forEach(function(meal) {
-          this.totalProtein += meal.nutrients["protein"];
-          this.totalCarbohydrates += meal.nutrients["carbohydrates"];
-          this.totalFat += meal.nutrients["fat"];
-          this.totalMagnesium += meal.nutrients["magnesium"];
-          this.totalZinc += meal.nutrients["zinc"];
-          this.totalIron += meal.nutrients["iron"];
-          this.totalFolate += meal.nutrients["folate"];
-          this.totalVitaminD += meal.nutrients["vitamin_d"];
-        }.bind(this));
-      },
-    },
+    methods: {},
 
     computed: {}
   };
