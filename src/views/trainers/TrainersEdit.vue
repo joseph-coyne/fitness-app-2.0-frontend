@@ -1,10 +1,10 @@
 <template>
-  <div class="trainers-edit">
+  <div class="trainers-edit add-product">
     <div class="main">
       <div class="section">
         <div class="container">
-          <h3>Add Product</h3>
-          <form>
+          <h3>Edit Profile</h3>
+          <form v-on:submit.prevent="submit()">
             <div class="row">
               <div class="col-md-5 col-sm-5">
                 <h6>Profile Picture</h6>
@@ -23,66 +23,89 @@
                   </div>
                 </div>
                 <h6>Tags</h6>
-                <p>{{tagNames}}</p>
                 <div id="tags">
-                  <input class="tagsinput" data-color="danger" v-model="tagNames" data-role="tags" />
-                  <div class="tagsinput-add"> 
-                    <input type="text" v-model="tagNames"></div>
-                  <!-- You can change "tag-primary" with with "tag-info", "tag-success", "tag-warning","tag-danger" -->
+                  <label>Workout Tags</label>
+                   <vue-tags-input name="user_tags"
+                    v-model="tag"
+                    :tags="tags"
+                    :autocomplete-items="filteredItems"
+                    @tags-changed="newTags => tags = newTags">
+                   </vue-tags-input>
                 </div>
-                <h6>Format
-                  <span class="icon-danger">*</span>
-                </h6>
+                <h6>Nutritionist</h6>
                 <div class="form-check-radio">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"> Digital
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">Yes
                     <span class="form-check-sign"></span>
                   </label>
                 </div>
                 <div class="form-check-radio">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked> Print
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>No
                     <span class="form-check-sign"></span>
                   </label>
                 </div>
               </div>
               <div class="col-md-7 col-sm-7">
-                <div class="form-group">
-                  <h6>Name
-                    <span class="icon-danger">*</span>
-                  </h6>
-                  <input type="text" class="form-control border-input" placeholder="enter the product name here...">
-                </div>
-                <div class="form-group">
-                  <h6>Tagline
-                    <span class="icon-danger">*</span>
-                  </h6>
-                  <input type="text" class="form-control border-input" placeholder="enter the product tagline here...">
-                </div>
                 <div class="row price-row">
                   <div class="col-md-6">
-                    <h6>Price
-                      <span class="icon-danger">*</span>
-                    </h6>
+                    <h6>First Name</h6>
                     <div class="input-group border-input">
-                      <input type="text" value="" placeholder="enter price" class="form-control border-input">
+                      <input type="text" v-model="first_name" placeholder="First Name" class="form-control border-input">
                       <div class="input-group-append">
-                        <span class="input-group-text"><i class="fa fa-euro"></i></span>
+                        <span class="input-group-text"></span>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <h6>Discount</h6>
+                    <h6>Last Name</h6>
                     <div class="input-group border-input">
-                      <input type="text" value="" placeholder="enter discount" class="form-control border-input">
+                      <input type="text" v-model="last_name" placeholder="Last Name" class="form-control border-input">
                       <div class="input-group-append">
-                        <span class="input-group-text">%</span>
+                        <span class="input-group-text"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h6>Username</h6>
+                    <div class="input-group border-input">
+                      <input type="text" v-model="username" placeholder="Username" class="form-control border-input">
+                      <div class="input-group-append">
+                        <span class="input-group-text"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h6>Email</h6>
+                    <div class="input-group border-input">
+                      <input type="email" v-model="email" placeholder="Email" class="form-control border-input">
+                      <div class="input-group-append">
+                        <span class="input-group-text"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h6>Password</h6>
+                    <div class="input-group border-input">
+                      <input type="password" v-model="password" placeholder="" class="form-control border-input">
+                      <div class="input-group-append">
+                        <span class="input-group-text"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" v-if="password">
+                    <h6>Password Confirmation</h6>
+                    <div class="input-group border-input">
+                      <input type="password" v-model="passwordConfirmation" placeholder="" class="form-control border-input">
+                      <div class="input-group-append">
+                        <span class="input-group-text"></span>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <h6>Description</h6>
+                  <h6>Bio</h6>
                   <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters." rows="13" maxlength="150"></textarea>
                   <h5>
                     <small>
@@ -90,23 +113,14 @@
                     </small>
                   </h5>
                 </div>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value=""> Display on landing page
-                    <span class="form-check-sign"></span>
-                  </label>
-                </div>
               </div>
             </div>
             <div class="row buttons-row">
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-3 col-sm-6">
                 <button class="btn btn-outline-danger btn-block btn-round">Cancel</button>
               </div>
-              <div class="col-md-4 col-sm-4">
-                <button class="btn btn-outline-primary btn-block btn-round">Save</button>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <button class="btn btn-primary btn-block btn-round">Save & Publish </button>
+              <div class="col-md-3 col-sm-6">
+                <button class="btn btn-primary btn-block btn-round" type="submit" >Save</button>
               </div>
             </div>
           </form>
@@ -116,53 +130,6 @@
       <datalist id="tags">
         <option v-for="tag in tags">{{ tag.name }}</option>
       </datalist>
-
-
-
-  <!--     <h1>Edit Profile</h1>
-
-        <form id="contactForm" v-on:submit.prevent="submit()">
-          <label>First Name</label>
-          <input type="text" v-model="firstName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name">
-                
-          <label>Last Name</label>
-          <input type="text" v-model="lastName" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="contact_name">
-      
-          <label>Username</label>
-          <input type="text" v-model="username" maxlength="100" class="form-control" name="contact_name">
-              
-          <label>E-mail</label>
-          <input type="email" v-model="email" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="contact_email" id="contact_email">
-
-          <label>Password</label>
-          <input type="password" v-model="password" data-msg-required="Please enter your phone" data-msg-email="Please enter your phone" maxlength="100" class="form-control" name="contact_phone" id="contact_phone">
-          
-          <label>Password Confirmation</label>
-          <input type="password" v-model="passwordConfirmation" data-msg-required="Please enter your phone" data-msg-email="Please enter your phone" maxlength="100" class="form-control" name="contact_phone" id="contact_phone">
-
-          <label>Location</label>
-          <input type="text" v-model="location" maxlength="100" class="form-control" name="contact_name">
-
-          <label>Video Url</label>
-          <input type="text" v-model="videoUrl" maxlength="100" class="form-control" name="contact_name">
-
-          <label>Profile Picture</label>
-          <input type="file" class="form-control" v-on:change="setFile($event)" ref="fileInput">
-
-            <label>Bio</label>
-              <textarea maxlength="5000" rows="10" v-model="bio" class="form-control" name="bio" id="contact_message">{{trainer.bio}}</textarea>
-
-                <label>Workout Tags</label>
-                 <vue-tags-input name="user_tags"
-                  v-model="tag"
-                  :tags="tags"
-                  :autocomplete-items="filteredItems"
-                  @tags-changed="newTags => tags = newTags">
-                 </vue-tags-input>
-
-                  <input id="contact_submit" type="submit" value="Save" class="btn btn-primary btn-lg" data-loading-text="Loading...">
-                  <button id="trainerdelete" type="button" class="btn btn-danger" v-on:click="deleteTrainer(trainer)">Delete Account</button>
-            </form> -->
   </div>
 </template>
 
@@ -194,7 +161,6 @@ export default {
       tagNames: [],
       autocompleteItems: [],
       errors: [],
-      hardcode: ["hi", "bye", "applepie"]
     };
   },
   created: function() {
@@ -210,7 +176,7 @@ export default {
         this.location = response.data.location;
         this.videoUrl = response.data.video_url;
         this.avatar = response.data.avatar;
-        this.tags = response.data.tags,
+        this.tags = response.data.tag_names,
         this.tagNames = response.data.tag_names
       });
     axios.get("http://localhost:3000/api/tags/").then(response => {

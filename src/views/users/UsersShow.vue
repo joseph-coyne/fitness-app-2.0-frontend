@@ -1,6 +1,35 @@
 <template>
-
   <div class="users-show">
+    <div class="wrapper">
+      <div class="profile-content section">
+        <div class="container">
+          <div class="row">
+            <div class="profile-picture">
+              <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-new img-no-padding">
+                  <img :src="user.avatar" alt="...">
+                </div>
+                <div class="name">
+                  <h4 class="title text-center">{{user.full_name}}
+                    <br />
+                    <!-- <small>Music Producer</small> -->
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center">
+              <p>{{user.bio}}</p>
+              <br />
+              <router-link :to="'/userss/me/edit'"><button type="button" class="btn btn-outline-default btn-border btn-round"><i class="fa fa-cog"></i> Edit Profile</button></router-link>
+            </div>
+          </div>
+          <br/>
+          <!-- Tab panes -->
+        </div>
+      </div>
+    </div>
 
   <!-- user meals -->
   <div>
