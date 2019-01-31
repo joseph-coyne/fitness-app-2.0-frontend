@@ -1,15 +1,15 @@
 <template>
   <div class="home">
-    <div class="page-header" data-parallax="true" style="background-image: url('/assets/img/sections/david-marcu.jpg');">
+    <div class="page-header" data-parallax="true" style="background-image: url(https://neoreach.com/wp-content/uploads/2016/06/iStock_000025435822Large-1.jpg);">
       <div class="filter"></div>
       <div class="content-center">
         <div class="container">
           <div class="motto">
-            <h1 class="title">Landing page</h1>
-            <h3 class="description">Start designing your landing page here.</h3>
+            <h1 class="title">It starts with a SparQ</h1>
+            <h3 class="description"></h3>
             <br />
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-neutral btn-round"><i class="fa fa-play"></i>Watch video</a>
-            <button type="button" class="btn btn-outline-neutral btn-round">Download</button>
+            <a href="https://youtu.be/s8i_iRgIrj8?t=6" class="btn btn-neutral btn-round"><i class="fa fa-play"></i>Watch video</a>
+            <!-- < --><!-- button type="button" class="btn btn-outline-neutral btn-round">Download</button> -->
           </div>
         </div>
       </div>
@@ -19,8 +19,8 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
-              <h2 class="title">Let's talk product</h2>
-              <h5>This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more.</h5>
+              <h2 class="title">What is SparQ?</h2>
+              <h5>Motivating yourself to get up and be the best you can be difficult. Sometimes we lack motivation, drive, and time. Often times we simply dont know what to do and how to start. Sparq gives you the necessary tools to achieve your health goals. Sparq builds you an experienced/dynamic team and program to get you started.</h5>
               <br />
               <a href="#paper-kit" class="btn btn-danger btn-fill btn-round">See Details</a>
             </div>
@@ -34,8 +34,8 @@
                   <i class="nc-icon nc-palette"></i>
                 </div>
                 <div class="description">
-                  <h4 class="info-title">Beautiful Gallery</h4>
-                  <p class="description">Spend your time generating new ideas. You don't have to think of implementing.</p>
+                  <h4 class="info-title">Trainers</h4>
+                  <p class="description">Find experienced trainers in your area to help get you motivated.</p>
                   <a href="#pkp" class="btn btn-link btn-danger">See more</a>
                 </div>
               </div>
@@ -46,8 +46,8 @@
                   <i class="nc-icon nc-bulb-63"></i>
                 </div>
                 <div class="description">
-                  <h4 class="info-title">New Ideas</h4>
-                  <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient.</p>
+                  <h4 class="info-title">Meals</h4>
+                  <p> Track your meals and learn how to fuel your progress with nutrition</p>
                   <a href="#pkp" class="btn btn-link btn-danger">See more</a>
                 </div>
               </div>
@@ -58,8 +58,8 @@
                   <i class="nc-icon nc-chart-bar-32"></i>
                 </div>
                 <div class="description">
-                  <h4 class="info-title">Statistics</h4>
-                  <p>Choose from a veriety of many colors resembling sugar paper pastels.</p>
+                  <h4 class="info-title">Workouts</h4>
+                  <p>Can't make it to the gym..No Problem! We have workouts you can do at home or office.</p>
                   <a href="#pkp" class="btn btn-link btn-danger">See more</a>
                 </div>
               </div>
@@ -70,8 +70,8 @@
                   <i class="nc-icon nc-sun-fog-29"></i>
                 </div>
                 <div class="description">
-                  <h4 class="info-title">Delightful design</h4>
-                  <p>Find unique and handmade delightful designs related items directly from our sellers.</p>
+                  <h4 class="info-title">Live Training</h4>
+                  <p>Communicate with your trainer or other fellow Sparqers and share your experences.</p>
                   <a href="#pkp" class="btn btn-link btn-danger">See more</a>
                 </div>
               </div>
@@ -112,13 +112,13 @@
               <div class="card card-profile card-plain">
                 <div class="card-avatar">
                   <a href="#avatar">
-                    <img src="/assets/img/faces/joe-gardner-2.jpg" alt="...">
+                    <img src="https://i.imgur.com/eJzS9HA.jpg">
                   </a>
                 </div>
                 <div class="card-body">
                   <a href="#paper-kit">
                     <div class="author">
-                      <h4 class="card-title">Sophie West</h4>
+                      <h4 class="card-title">Joseph Coyne</h4>
                       <h6 class="card-category text-muted">Designer</h6>
                     </div>
                   </a>
@@ -137,13 +137,13 @@
               <div class="card card-profile card-plain">
                 <div class="card-avatar">
                   <a href="#avatar">
-                    <img src="/assets/img/faces/erik-lucatero-2.jpg" alt="...">
+                    <img src="https://i.imgur.com/yrzJtVF.jpg" alt="...">
                   </a>
                 </div>
                 <div class="card-body">
                   <a href="#paper-kit">
                     <div class="author">
-                      <h4 class="card-title">Robert Orben</h4>
+                      <h4 class="card-title">Nnanna Egbujiobi</h4>
                       <h6 class="card-category text-muted">Developer</h6>
                     </div>
                   </a>
