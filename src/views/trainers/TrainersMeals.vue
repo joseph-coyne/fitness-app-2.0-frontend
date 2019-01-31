@@ -65,6 +65,12 @@
                     @tags-changed="newTags => tags = newTags">
                   </vue-tags-input>
                 </div>
+                <label>Select Client</label> 
+                <select v-model="userId">
+                  <option v-for="client in clientNames(this.clients, 'id')" v-bind:value="client.id">
+                    {{client.full_name}}
+                  </option>
+                </select>
                 <div class="form-group">
                   <h6>Instructions</h6>
                   <textarea v-model="instructions" class="form-control textarea-limited" placeholder="Add Instructions for your meal" rows="13" maxlength="150"></textarea>
@@ -83,7 +89,7 @@
     </div>
 
     <!-- create meal start -->
-    <div class="add-product sidebar-collapse">
+   <!--  <div class="add-product sidebar-collapse">
       
       <form v-on:submit.prevent="submit()">
         <h1>Create Meal</h1>
@@ -111,8 +117,8 @@
           @tags-changed="newTags => tags = newTags">
         </vue-tags-input>
 
-        <!-- user types directions for creating meal -->
-        <textarea placeholder="Add Instructions for your meal" v-model="instructions">
+        user types directions for creating meal -->
+       <!--  <textarea placeholder="Add Instructions for your meal" v-model="instructions">
         </textarea>
 
         <label>Select Client</label> 
@@ -124,17 +130,17 @@
         
         <input type="submit" value="Add Meal">
       </form>
-    </div>
+    </div> --> 
     <!-- create meal end -->
 
 
-    <h2>My Meals</h2>
+    <!-- <h2>My Meals</h2> -->
     <!-- display trainer meals start -->
-    <div v-for="meal in meals">
+    <!-- <div v-for="meal in meals">
       <h3>{{meal.name}}</h3>
       <h5>Instructions:</h5>
       <p>{{meal.recipe_instructions}}</p>
-    </div>
+    </div> -->
     <!-- display traienr meals end -->
   </div>
 </template>
