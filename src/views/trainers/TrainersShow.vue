@@ -9,7 +9,7 @@
         <div class="container">
           <div class="row title-row">
             <div class="col-md-2">
-              <a href="/trainersindex"><h4 class="shop">< Trainers</h4></a>
+              <a href="/trainersindex"><h4 class="shop"> Trainers</h4></a>
             </div>
             <div class="col-md-4 ml-auto">
               <div class="pull-right">
