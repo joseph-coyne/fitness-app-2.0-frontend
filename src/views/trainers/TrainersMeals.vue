@@ -1,8 +1,89 @@
 <template>
   <div class="trainers-meals">
 
+    <div class="main">
+      <div class="section">
+        <div class="container">
+          <form v-on:submit.prevent="submit()">
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+            <div class="row">
+              <div class="col-md-5 col-sm-5">
+                <h6>Meal Image</h6>
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                  <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
+                    <img src="/assets/img/image_placeholder.jpg" alt="...">
+                  </div>
+                  <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;"></div>
+                  <div>
+                    <span class="btn btn-outline-default btn-round btn-file">
+                      <span class="fileinput-new">Select image</span>
+                      <span class="fileinput-exists">Change</span>
+                      <input type="file" name="...">
+                    </span>
+                    <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                  </div>
+                </div>
+                <h6>Meal Type
+                  <p>{{mealType}}</p>
+                  <span class="icon-danger">*</span>
+                </h6>
+                <div class="form-group"> 
+                   <select v-model="mealType" class="form-control form-control-sm col-md-6">
+                     <option v-for="option in options">
+                       {{option.type}}
+                     </option>
+                   </select>
+                </div>
+                <!-- come back to get radio button to work for meal type -->
+              <!--   <div class="form-check-radio" v-for="option in options">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" v-model="mealType"> {{option.type}}
+                    <span v-model="mealType" class="form-check-sign"></span>
+                  </label>
+                </div> -->
+              </div>
+              <div class="col-md-7 col-sm-7">
+                <div class="form-group">
+                  <h6>Meal Name
+                    <span class="icon-danger">*</span>
+                  </h6>
+                     <input class="form-control border-input" type="text" v-model="mealName" placeholder="name">
+                </div>
+                <div class="form-group">
+                  <h6>Search Ingredients:
+                    <span class="icon-danger">*</span>
+                  </h6>
+                  <!-- styling is not matching up in this input tag -->
+                  <vue-tags-input
+                    class="border-input"
+                    placeholder="ingredients"
+                    v-model="tag"
+                    :tags="tags"
+                    :autocomplete-items="filteredItems"
+                    @tags-changed="newTags => tags = newTags">
+                  </vue-tags-input>
+                </div>
+                <div class="form-group">
+                  <h6>Instructions</h6>
+                  <textarea v-model="instructions" class="form-control textarea-limited" placeholder="Add Instructions for your meal" rows="13" maxlength="150"></textarea>
+                  <h5>
+                    <small>
+                      <span id="textarea-limited-message" class="pull-right">150 characters left</span>
+                    </small>
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-danger btn-block btn-round" value="Add Meal">
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- create meal start -->
-    <div>
+    <div class="add-product sidebar-collapse">
       
       <form v-on:submit.prevent="submit()">
         <h1>Create Meal</h1>
@@ -40,10 +121,6 @@
             {{client.full_name}}
           </option>
         </select>
-
-
-
-        <p>{{userId}}</p> 
         
         <input type="submit" value="Add Meal">
       </form>
@@ -52,14 +129,13 @@
 
 
     <h2>My Meals</h2>
-    <p>{{meals}}</p>
-    <!-- display meals start -->
+    <!-- display trainer meals start -->
     <div v-for="meal in meals">
       <h3>{{meal.name}}</h3>
       <h5>Instructions:</h5>
       <p>{{meal.recipe_instructions}}</p>
     </div>
-    <!-- display meals end -->
+    <!-- display traienr meals end -->
   </div>
 </template>
 
