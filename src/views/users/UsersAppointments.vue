@@ -1,5 +1,43 @@
 <template>
   <div class="users-appointments">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">#</th>
+                <th>Trainer</th>
+                <th>Date</th>
+                <th>Focus</th>
+                <th class="text-right">To Bring</th>
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody v-for="appointment in appointments">
+            <tr>
+                <td class="text-center">1</td>
+                <td>{{appointment.trainer_first_name}} {{appointment.trainer_last_name}}</td>
+                <td>{{appointment.strftime}}</td>
+                <td>{{appointment.focus}}</td>
+                <td class="text-right">{{appointment.items}}</td>
+                <td class="td-actions text-right">
+                    <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+                        <i class="fa fa-user"></i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+
     <ul v-for="appointment in appointments">
       <img :src="appointment.trainer_avatar" width="263" height="263" alt="" data-toggle="modal" data-target="#appointmentShow" v-on:click="setCurrentAppointment(appointment)">
       <h4>{{appointment.time | momentshow }}</h4>
