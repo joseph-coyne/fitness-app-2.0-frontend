@@ -1,7 +1,7 @@
 <template>
   <div class="trainers-appointments">
     <ul v-for="appointment in appointments">
-      <img class="img-responsive" :src="appointment.user_image" width="263" height="263" alt="" data-toggle="modal" data-target="#myModal" v-on:click="setCurrentAppointment(appointment)">
+      <img class="img-responsive" :src="appointment.user_avatar" width="263" height="263" alt="" data-toggle="modal" data-target="#myModal" v-on:click="setCurrentAppointment(appointment)">
       <h4>{{appointment.time | momentshow }}</h4>
       <small>{{appointment.user_name}}</small>
     </ul>
@@ -85,6 +85,7 @@ export default {
     axios.get("http://localhost:3000/api/appointments").then(response => {
       console.log(response.data);
       this.appointments = response.data;
+      console.log(this.appointments);
       this.rating = response.data.rating;
       this.info = response.data.info;
     });

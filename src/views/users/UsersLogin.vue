@@ -1,75 +1,33 @@
 <template>
-  <div class="users-login">
-    
-    
-
-      
-
-       
-        <header id="page-title">
-         
-            
-              <li><a href="index.html">Home</a></li>
-              <li>Sign In</li>
-            </ul>
-          
-        </header>
-
-
-       
-
-          
-
-            <!-- LOGIN -->
-            
-
-              <h2>Sign <strong>In</strong></h2>
-                <p>{{errors}}</p>
-              <form v-on:submit.prevent="submit()">
-
-                <!-- alert failed -->
-                <div v-if="errors">
-                  Wrong <strong>E-mail Address</strong> or <strong>Password</strong>!
+  <div class="users-login login-page full-screen">
+    <div class="wrapper">
+      <div class="page-header" style="background-image: url('../assets/img/sections/bruno-abatti.jpg');">
+        <div class="filter"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+              <div class="card card-register">
+                <h3 class="card-title">Welcome</h3>
+                <form class="register-form" v-on:submit.prevent="submit()">
+                  <label>Email</label>
+                  <input type="email" class="form-control no-border" placeholder="Email" v-model="email">
+                  <label>Password</label>
+                  <input type="password" class="form-control no-border" placeholder="Password" v-model="password">
+                  <button class="btn btn-danger btn-block btn-round" type="submit">Sign In</button>
+                  <br>
+                  <div v-if="errors">
+                    Wrong <strong>E-mail Address</strong> or <strong>Password</strong>!
+                  </div>
+                </form>
+                <div class="forgot">
+                  <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
                 </div>
-                <label>E-mail Address</label>
-                <input type="text" v-model="email">
-                <label>Password</label>
-                <input type="password" v-model="password">
-                <label for="rememberme">
-                  <input type="checkbox" id="rememberme" name="rememberme">Remember Me
-                </label>
-                <input type="submit" value="Sign In" data-loading-text="Loading...">
-              </form>
-
-            
-            <!-- /LOGIN -->
-
-         
-
-
-          <p>
-            Don't have an account yet? <router-link to="/userssignup">Find your Sparq today!</router-link>
-          </p>
-
-       
-
-     
-    
-    <!-- /WRAPPER -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <style>

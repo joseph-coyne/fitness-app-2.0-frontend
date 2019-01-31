@@ -10,11 +10,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="isLoggedIn()">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item" v-if="isUser()">
               <router-link class="nav-link" to="/trainers">Trainers</router-link>
-            </li>                  
+            </li>                             
             <li class="nav-item">
-              <router-link class="nav-link" to="/usersappointments">Appointments</router-link>
+              <router-link v-if="isUser()" class="nav-link" to="/usersappointments">Appointments</router-link>
+              <router-link v-if="isTrainer() "class="nav-link" to="/trainersappointments">Appointments</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/meals">My Meals</router-link> 
@@ -159,13 +160,16 @@
       };
     },
     created: function() {
-      axios.get("http://localhost:3000/api/users/me").then(response => {
-        this.user = response.data;
-      });
-      
-      axios.get("http://localhost:3000/api/trainers/me").then(response => {
-        this.trainer = response.data;
-      });
+      if(localStorage.getItem("user_id")) {
+        axios.get("http://localhost:3000/api/users/me").then(response => {
+          this.user = response.data;
+       })
+      };
+      if(localStorage.getItem("trainer_id")) {
+        axios.get("http://localhost:3000/api/trainers/me").then(response => {
+          this.trainer = response.data;
+        })
+      };
     },
     methods: {
       submit: function() {

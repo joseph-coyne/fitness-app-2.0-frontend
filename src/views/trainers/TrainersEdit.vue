@@ -23,11 +23,13 @@
                   </div>
                 </div>
                 <h6>Tags</h6>
+                <p>{{tagNames}}</p>
                 <div id="tags">
-                  <input class="tagsinput" data-color="success" type="text" value="" data-role="tags" />
-                  <!-- <div class="tagsinput-add"></div> -->
+                  <input class="tagsinput" data-color="danger" v-model="tagNames" data-role="tags" />
+                  <div class="tagsinput-add"> 
+                    <input type="text" v-model="tagNames"></div>
                   <!-- You can change "tag-primary" with with "tag-info", "tag-success", "tag-warning","tag-danger" -->
-                </div>p
+                </div>
                 <h6>Format
                   <span class="icon-danger">*</span>
                 </h6>
@@ -189,8 +191,10 @@ export default {
       location: "",
       tag: "",
       tags: [],
+      tagNames: [],
       autocompleteItems: [],
-      errors: []
+      errors: [],
+      hardcode: ["hi", "bye", "applepie"]
     };
   },
   created: function() {
@@ -206,9 +210,8 @@ export default {
         this.location = response.data.location;
         this.videoUrl = response.data.video_url;
         this.avatar = response.data.avatar;
-        this.tags = response.data.tags.map(a => {
-          return { text: a.name, id: a.id };
-        });
+        this.tags = response.data.tags,
+        this.tagNames = response.data.tag_names
       });
     axios.get("http://localhost:3000/api/tags/").then(response => {
       this.autocompleteItems = response.data.map(a => {
