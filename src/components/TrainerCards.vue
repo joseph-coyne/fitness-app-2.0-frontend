@@ -1,5 +1,5 @@
 <template>
-	<div class="card card-profile card-plain">
+	<div class="card card-profile">
 		<div class="card-img-top">
 			<router-link v-bind:to="'/trainers/' + trainer.id">
 				<img class="img" :src="(trainer.avatar)" />
