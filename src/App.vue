@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg bg-danger">
       <div class="container">
-        <a class="navbar-brand" href="/">Sparq Fitness</a>
+        <router-link class="navbar-brand" to="/">Sparq Fitness</router-link>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar"></span>
           <span class="navbar-toggler-bar"></span>
@@ -122,7 +122,7 @@
             </li>
           </ul>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" v-else="isLoggedOut()">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" v-else>
           <ul class="navbar-nav ml-auto">
            <li class="nav-item">
               <router-link class="nav-link" to="/userslogin">Sign In</router-link>
@@ -141,11 +141,11 @@
 </template>
 
 <style>
-.img-circle {
-  width: 40px !important;
-  height: 40px !important;
-  max-width: !important;
-}
+  .img-circle {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: !important;
+  }
 </style>
 <script>
   import axios from 'axios';
@@ -213,4 +213,5 @@
       },
       computed: {}
     };
+ 
 </script>

@@ -11,21 +11,8 @@
 		      </div>
 		    </div>
 		    <div class="row">
-		      <div class="col-md-4" v-for="trainer in orderBy(filterBy(trainers, searchText), sortAttribute, sortAscending)" v-bind:key="trainer.id">
-		        <div class="card card-profile card-plain">
-		          <div class="card-img-top">
-		          	<router-link v-bind:to="'/trainers/' + trainer.id">
-		              <img class="img" :src="(trainer.avatar)" />
-		            </router-link>
-		          </div>
-		          <div class="card-body">
-		            <h4 class="card-title">{{trainer.full_name}}</h4>
-		            <h6 class="card-category">{{trainer.location}}</h6>
-		            <div class="card-footer">
-									<span v-for="tag in trainer.tags" id="tags" v-on:click="searchText = tag.name" class="badge badge-pill badge-danger">{{tag.name}} </span>
-		            </div>
-		          </div>
-		        </div>
+		      <div class="col-md-4">
+						<TrainerCards v-for="trainer in orderBy(filterBy(trainers, searchText), sortAttribute, sortAscending)" :key="trainer.id" :trainer="trainer"/>
 		      </div>
 		    </div>
 		  </div>
@@ -40,11 +27,15 @@
 </style>
 
 <script>
+	import TrainerCards from '../../components/TrainerCards.vue';
 	var axios = require("axios");
 	import Vue2Filters from 'vue2-filters'
 	export default {
 		mixins: [Vue2Filters.mixin],
-		data: function() {
+		components: {
+			TrainerCards,
+		},
+		data() {
 			return {
 				trainers: [],
 				tags: [],
