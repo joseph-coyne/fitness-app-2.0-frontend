@@ -165,6 +165,7 @@
 
 <script>
   import axios from "axios";
+import UserService from '../../services/UserService';
   export default {
     data: function() {
       return {
@@ -216,8 +217,7 @@
           formData.append("height", this.height);
           formData.append("level", this.level);
           formData.append("weight", this.weight);
-        axios
-          .patch("http://localhost:3000/api/users/" + this.$route.params.id, formData)
+        UserService.patchUser(this.$route.params.id, formData)
           .then(response => {
             this.$refs.fileInput.value = "";
             this.$router.push("/users/me");
@@ -227,8 +227,7 @@
           });
       },
       deleteUser: function(user) {
-        axios
-          .delete("http://localhost:3000/api/users/" + this.$route.params.id)
+        UserService.deleteUser(this.$route.params.id)
           .then(response => {
             delete axios.defaults.headers.common["Authorization"];
             localStorage.removeItem("jwt");

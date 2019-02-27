@@ -35,7 +35,7 @@
 </style>
 
 <script>
-import axios from "axios";
+import UserService from '../../services/UserService';
 
 export default {
   template: "#login-page",
@@ -52,8 +52,7 @@ export default {
         email: this.email,
         password: this.password
       };
-      axios
-        .post("http://localhost:3000/api/user_sessions", params)
+      UserService.loginUser(params)
         .then(response => {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;

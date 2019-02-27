@@ -51,7 +51,7 @@
                   <div class="col-md-6">
                     <h6>First Name</h6>
                     <div class="input-group border-input">
-                      <input type="text" v-model="first_name" placeholder="First Name" class="form-control border-input">
+                      <input type="text" v-model="firstName" placeholder="First Name" class="form-control border-input">
                       <div class="input-group-append">
                         <span class="input-group-text"></span>
                       </div>
@@ -60,7 +60,7 @@
                   <div class="col-md-6">
                     <h6>Last Name</h6>
                     <div class="input-group border-input">
-                      <input type="text" v-model="last_name" placeholder="Last Name" class="form-control border-input">
+                      <input type="text" v-model="lastName" placeholder="Last Name" class="form-control border-input">
                       <div class="input-group-append">
                         <span class="input-group-text"></span>
                       </div>
@@ -106,7 +106,7 @@
 
                 <div class="form-group">
                   <h6>Bio</h6>
-                  <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters." rows="13" maxlength="150"></textarea>
+                  <textarea v-model="bio" class="form-control textarea-limited" rows="13" maxlength="150">{{bio}}</textarea>
                   <h5>
                     <small>
                       <span id="textarea-limited-message" class="pull-right">150 characters left</span>
@@ -139,6 +139,7 @@
 <script>
 import axios from "axios";
 import VueTagsInput from "@johmun/vue-tags-input";
+import TrainerService from '../../services/TrainerService';
 export default {
   components: {
     VueTagsInput
@@ -154,6 +155,7 @@ export default {
       email: "",
       videoUrl: "",
       avatar: "",
+      oldAvatar: "",
       bio: "",
       location: "",
       tag: "",
@@ -164,8 +166,7 @@ export default {
     };
   },
   created: function() {
-    axios
-      .get("http://localhost:3000/api/trainers/" + this.$route.params.id)
+    TrainerService.getTrainer(this.$route.params.id)
       .then(response => {
         this.trainer = response.data;
         this.firstName = response.data.first_name;
@@ -176,6 +177,7 @@ export default {
         this.location = response.data.location;
         this.videoUrl = response.data.video_url;
         this.avatar = response.data.avatar;
+        this.oldAvatar = response.data.avatar;
         this.tags = response.data.tag_names,
         this.tagNames = response.data.tag_names
       });
@@ -202,15 +204,11 @@ export default {
       formData.append("bio", this.bio);
       formData.append("location", this.location);
       formData.append("tags", this.tags.map(a => a.id));
-      if (this.avatar) {
+      if (this.avatar != this.oldAvatar) {
         formData.append("avatar", this.avatar);
       }
 
-      axios
-        .patch(
-          "http://localhost:3000/api/trainers/" + this.$route.params.id,
-          formData
-        )
+      TrainerService.patchTrainer(this.$route.params.id, formData)
         .then(response => {
           this.$router.push("/trainers/me");
         })
@@ -219,8 +217,7 @@ export default {
         });
     },
     deleteTrainer: function(trainer) {
-      axios
-        .delete("http://localhost:3000/api/trainers/" + this.$route.params.id)
+      TrainerService.deleteTrainer(this.$route.params.id)
         .then(response => {
           delete axios.defaults.headers.common["Authorization"];
           localStorage.removeItem("jwt");

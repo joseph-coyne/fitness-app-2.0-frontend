@@ -5,12 +5,7 @@
     <Footer />
   </div>
 </template>
-
-<style>
-</style>
-
 <script>
-  import axios from 'axios';
   import NavBar from './components/NavBar.vue';
   import Footer from './components/Footer.vue';
   export default {
@@ -18,7 +13,5 @@
       NavBar,
       Footer,
     },
-      computed: {}
-    };
- 
+  };
 </script>

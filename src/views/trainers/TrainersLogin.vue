@@ -38,6 +38,7 @@
 </style>
 <script>
 import axios from "axios";
+import TrainerService from '../../services/TrainerService';
 
 export default {
   template: "#login-page",
@@ -54,8 +55,7 @@ export default {
         email: this.email,
         password: this.password
       };
-      axios
-        .post("http://localhost:3000/api/trainer_sessions", params)
+      TrainerService.loginTrainer(params)
         .then(response => {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;

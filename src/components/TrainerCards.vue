@@ -10,7 +10,7 @@
 				<h4 class="card-title">{{trainer.full_name}}</h4>
 				<h6 class="card-category">{{trainer.location}}</h6>
 				<div class="card-footer">
-					<TrainerTags v-for="tag in trainer.tags" :key="tag.id" :tag="tag"/>
+					<TrainerTags v-for="tag in trainer.tags" :key="tag.id" :tag="tag" @click="searchText = tag.name"/>
 				</div>
 			</div>
 		</div>

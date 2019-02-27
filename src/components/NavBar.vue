@@ -135,6 +135,8 @@
 
 <script>
 import axios from 'axios';
+import UserService from '../services/UserService.js'
+import TrainerService from '../services/TrainerService.js'
   export default {
     data: function() {
       return {
@@ -147,12 +149,14 @@ import axios from 'axios';
     },
     created: function() {
       if(localStorage.getItem("user_id")) {
-        axios.get("http://localhost:3000/api/users/me").then(response => {
+        UserService.getUserMe()
+        .then(response => {
           this.user = response.data;
        })
       };
       if(localStorage.getItem("trainer_id")) {
-        axios.get("http://localhost:3000/api/trainers/me").then(response => {
+        TrainerService.getTrainerMe()
+        .then(response => {
           this.trainer = response.data;
         })
       };

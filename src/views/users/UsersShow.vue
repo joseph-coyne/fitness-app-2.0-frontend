@@ -80,6 +80,7 @@
 
 <script>
   import axios from 'axios';
+import UserService from '../../services/UserService';
 
   export default {
     data: function() {
@@ -93,7 +94,8 @@
       };
     },
     created: function() {
-      axios.get("http://localhost:3000/api/users/me").then(response => {
+      UserService.getUserMe()
+      .then(response => {
         this.user = response.data;
       });
 

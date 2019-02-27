@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import UserService from "../..service/UserService.js";
 export default {
   data: function() {
     return {
@@ -86,8 +86,7 @@ export default {
         password: this.password,
         password_confirmation: this.passwordConfirmation
       };
-      axios
-        .post("http://localhost:3000/api/users", params)
+      UserService.postUser(params)
         .then(response => {
           this.$router.push("/userslogin");
         })
