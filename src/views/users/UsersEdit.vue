@@ -165,7 +165,7 @@
 
 <script>
   import axios from "axios";
-import UserService from '../../services/UserService';
+import UserService from '../../services/UserService.js';
   export default {
     data: function() {
       return {
@@ -183,8 +183,7 @@ import UserService from '../../services/UserService';
       };
     },
     created: function() {
-      axios
-        .get("http://localhost:3000/api/users/" + this.$route.params.id)
+      UserService.getUser(this.$route.params.id)
         .then(response => {
           this.user = response.data;
           this.firstName = response.data.first_name;

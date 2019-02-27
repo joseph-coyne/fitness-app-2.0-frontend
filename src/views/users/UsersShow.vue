@@ -79,8 +79,8 @@
 </style>
 
 <script>
-  import axios from 'axios';
-import UserService from '../../services/UserService';
+import axios from 'axios';
+import UserService from '../../services/UserService.js';
 
   export default {
     data: function() {

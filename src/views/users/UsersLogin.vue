@@ -35,7 +35,7 @@
 </style>
 
 <script>
-import UserService from '../../services/UserService';
+import UserService from '../../services/UserService.js';
 
 export default {
   template: "#login-page",

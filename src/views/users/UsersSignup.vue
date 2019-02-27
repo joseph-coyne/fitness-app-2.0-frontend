@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import UserService from "../..service/UserService.js";
+import UserService from '../../services/UserService.js';
 export default {
   data: function() {
     return {
