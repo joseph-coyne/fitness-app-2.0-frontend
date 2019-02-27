@@ -11,34 +11,22 @@
           <div class="links">
             <ul>
               <li>
-                <a href="#paper-kit">
-                  Home
-                </a>
+                <router-link to='/'>Home</router-link>
               </li>
               <li>
-                <a href="#paper-kit">
-                  Company
-                </a>
+                <router-link to='/trainers'>Trainers</router-link>
               </li>
               <li>
-                <a href="#paper-kit">
-                  Portfolio
-                </a>
+                <router-link to='/usersappointments'>Appointments</router-link>
               </li>
               <li>
-                <a href="#paper-kit">
-                  Team
-                </a>
+                <router-link to='/meals'>Meal Plans</router-link>
               </li>
               <li>
-                <a href="#paper-kit">
-                  Contact
-                </a>
+                <router-link to='/workouts'>Workout Plans</router-link>
               </li>
               <li>
-                <a href="#paper-kit">
-                  We're Hiring!
-                </a>
+                <router-link to='/'>Join Sparq!</router-link>
               </li>
             </ul>
             <hr />

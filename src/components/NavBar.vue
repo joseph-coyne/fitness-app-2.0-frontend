@@ -201,5 +201,9 @@ import axios from 'axios';
 </script>
 
 <style scoped>
-
+  .img-circle {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: !important;
+  }
 </style>
