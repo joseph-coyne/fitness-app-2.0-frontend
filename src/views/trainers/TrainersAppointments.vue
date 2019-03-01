@@ -9,15 +9,13 @@
   <form v-on:submit.prevent="submit()">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-
         <div class="modal-content modal-lg">
-
           <div class="modal-header"><!-- modal header -->
-
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Edit Appointment</h4>
-          </div><!-- /modal header -->
-
+          </div>
+          <!-- /modal header -->
+          
           <!-- modal body -->
           <div id="editmodal" class="modal-body">
             Should they bring anything?:
@@ -34,19 +32,19 @@
             How difficult will this workout be?
             <star-rating 
             v-model="rating"
-            star-size="25"
+            :star-size=25
             active-color="#FF7F50"
             :show-rating="false">
             </star-rating>
           </div>
-
           <!-- /modal body -->
-
-          <div class="modal-footer"><!-- modal footer -->
+          
+          <!-- modal footer -->
+          <div class="modal-footer">
             <button type="button" class="btn btn-primary" disabled="disabled">Message</button>
             <input class="btn btn-primary" type="submit" value="Save Changes"></input>
-
-          </div><!-- /modal footer -->
+          </div>
+          <!-- /modal footer -->
         
 
         </div>
@@ -60,7 +58,7 @@
 </style>
 
 <script>
-import axios from "axios";
+import AppointmentService from '../../services/AppointmentService.js';
 import moment from "moment";
 import VueMoment from "vue-moment";
 import VueTagsInput from "@johmun/vue-tags-input";
@@ -72,20 +70,20 @@ export default {
   },
   data: function() {
     return {
-      message: "Appointments",
       time: "",
-      rating: "",
+      rating: 0,
       info: "",
       tag: "",
       tags: [],
-      appointments: []
+      appointments: [],
+      currentAppointment: {}
     };
   },
-  created: function() {
-    axios.get("http://localhost:3000/api/appointments").then(response => {
+  created() {
+    AppointmentService.getAppointments()
+    .then(response => {
       console.log(response.data);
       this.appointments = response.data;
-      console.log(this.appointments);
       this.rating = response.data.rating;
       this.info = response.data.info;
     });
@@ -100,12 +98,7 @@ export default {
         info: this.info,
         items: this.tags.map(a => a.text)
       };
-      axios
-        .patch(
-          "http://localhost:3000/api/appointments/" +
-            this.currentAppointment.id,
-          params
-        )
+      AppointmentService.patchAppointment(this.currentAppointment.id, params)
         .then(response => {
           $("#myModal").modal("hide");
           this.$router.push("/trainersappointments");

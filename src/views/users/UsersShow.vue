@@ -22,7 +22,7 @@
             <div class="col-md-6 ml-auto mr-auto text-center">
               <p>{{user.bio}}</p>
               <br />
-              <router-link :to="'/userss/me/edit'"><button type="button" class="btn btn-outline-default btn-border btn-round"><i class="fa fa-cog"></i> Edit Profile</button></router-link>
+              <router-link :to="'/users/me/edit'"><button type="button" class="btn btn-outline-default btn-border btn-round"><i class="fa fa-cog"></i> Edit Profile</button></router-link>
             </div>
           </div>
           <br/>
@@ -79,7 +79,8 @@
 </style>
 
 <script>
-  import axios from 'axios';
+import axios from 'axios';
+import UserService from '../../services/UserService.js';
 
   export default {
     data: function() {
@@ -93,7 +94,8 @@
       };
     },
     created: function() {
-      axios.get("http://localhost:3000/api/users/me").then(response => {
+      UserService.getUserMe()
+      .then(response => {
         this.user = response.data;
       });
 
