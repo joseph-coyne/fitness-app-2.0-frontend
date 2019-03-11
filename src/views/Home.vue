@@ -93,7 +93,7 @@
                 <div class="card-body">
                   <a href="#paper-kit">
                     <div class="author">
-                      <h4 class="card-title">Tayte Bicknell</h4>
+                      <h4 class="card-title">Tayt Bicknell</h4>
                       <h6 class="card-category text-muted">Developer</h6>
                     </div>
                   </a>

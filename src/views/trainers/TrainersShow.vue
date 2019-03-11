@@ -8,7 +8,7 @@
               <a href="/trainersindex"><h4 class="shop">< Trainers</h4></a>
             </div>
             <div class="col-md-4 ml-auto">
-              <div class="pull-right"v-if="isTrainer()">
+              <div class="pull-right" v-if="isTrainer()">
                 <router-link :to="'/trainers/me/edit'"><button type="button" class="btn btn-outline-default btn-border btn-round"><i class="nc-icon nc-settings-gear-65"></i> Edit Profile</button></router-link>
               </div>
             </div>
@@ -18,12 +18,6 @@
               <div id="carousel" class="ml-auto mr-auto">
                 <div class="card page-carousel">
                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-<!--                     <ol class="carousel-indicators">
-                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    </ol> -->
                     <div class="carousel-inner" role="listbox">
                       <div class="carousel-item active">
                         <img class="d-block img-fluid" :src="trainer.avatar" alt="Awesome Item">
@@ -37,7 +31,8 @@
             <div class="col-md-5 col-sm-6">
               <h2>{{trainer.full_name}}</h2>
               <h4 class="price"><strong></strong></h4>
-              <span class="badge badge-pill badge-success" v-for="tags in trainer.tags" id="tags"> {{tags.name}} </span>
+              <TrainerTags v-for="tag in trainer.tags" id="tags" :key="tag.id":tag="tag"/>
+              <!-- <span class="badge badge-pill badge-success" v-for="tags in trainer.tags" id="tags"> {{tags.name}} </span> -->
               <hr />
               <p>{{trainer.bio}}</p>
               <hr />
@@ -48,6 +43,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -114,9 +110,11 @@
 </style>
 
 <script>
+import AppointmentService from '../../services/AppointmentService.js';
+import TrainerService from '../../services/TrainerService.js';
+import TrainerTags from '../../components/TrainerTags.vue';
 import moment from "moment";
 import StarRating from "vue-star-rating";
-import axios from "axios";
 import Chat from "vue-beautiful-chat";
 import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
 import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css";
@@ -124,7 +122,8 @@ import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css";
 export default {
   components: {
     VueCtkDateTimePicker,
-    StarRating
+    StarRating,
+    TrainerTags
   },
   data: function() {
     return {
@@ -183,9 +182,8 @@ export default {
       alwaysScrollToBottom: false // when set to true always scrolls the chat to the bottom when new events are in (new message, user starts typing.)
     };
   },
-  created: function() {
-    axios
-      .get("http://localhost:3000/api/trainers/" + this.$route.params.id)
+  created() {
+    TrainerService.getTrainer(this.$route.params.id)
       .then(response => {
         this.trainer = response.data;
         this.rating = response.data.rating;
@@ -224,8 +222,7 @@ export default {
         time: this.time,
         trainer_id: this.trainer.id
       };
-      axios
-        .post("http://localhost:3000/api/appointments", params)
+      AppointmentService.postAppointment(params)
         .then(response => {
           $("#myModal").modal("hide");
           this.$router.push("/usersappointments");

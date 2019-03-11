@@ -51,66 +51,66 @@
     </div>
 
       <!-- appointment show modal -->
-      <div class="modal fade bd-example-modal-lg" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h5 class="modal-title text-center" id="exampleModalLabel">{{currentAppointment.trainer_first_name}} {{currentAppointment.trainer_last_name}}</h5>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-7 col-sm-6">
-                  <div id="carousel" class="ml-auto mr-auto">
-                    <div class="card page-carousel">
-                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                          <div class="carousel-item active">
-                            <img class="d-block img-fluid" :src="currentAppointment.trainer_avatar" alt="Awesome Item">
-                            <div class="carousel-caption d-none d-md-block">
-                            </div>
+    <div class="modal fade bd-example-modal-lg" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title text-center" id="exampleModalLabel">{{currentAppointment.trainer_first_name}} {{currentAppointment.trainer_last_name}}</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-7 col-sm-6">
+                <div id="carousel" class="ml-auto mr-auto">
+                  <div class="card page-carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                          <img class="d-block img-fluid" :src="currentAppointment.trainer_avatar" alt="Awesome Item">
+                          <div class="carousel-caption d-none d-md-block">
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-5 col-sm-6">
-                  <h4><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#calendarModal"><strong class="text-danger">{{currentAppointment.time | momentshow }}</strong></a></h4>
-                  <h4 class="price">{{currentAppointment.focus}}</h4>
-                  <hr />
-                  <p>"{{currentAppointment.info}}"</p>
-                  <hr />
-                  <span class="label label-default shipping">Workout difficulty:
-                    <star-rating 
-                    v-model="currentAppointment.rating"
-                    star-size="25"
-                    active-color="#FF7F50"
-                    read-only
-                    :show-rating="false">
-                    </star-rating>
-                  </span>
-                  <span>Make sure your bring:</span>
-                  <div v-for="item in currentAppointment.items">
-                    <span class="badge badge-danger">{{item.name}}</span>
-                  </div>
+              </div>
+              <div class="col-md-5 col-sm-6">
+                <h4><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#calendarModal"><strong class="text-danger">{{currentAppointment.time | momentshow }}</strong></a></h4>
+                <h4 class="price">{{currentAppointment.focus}}</h4>
+                <hr />
+                <p>"{{currentAppointment.info}}"</p>
+                <hr />
+                <span class="label label-default shipping">Workout difficulty:
+                  <star-rating 
+                  v-model="currentAppointment.rating"
+                  :star-size=25
+                  active-color="#FF7F50"
+                  read-only
+                  :show-rating="false">
+                  </star-rating>
+                </span>
+                <span>Make sure your bring:</span>
+                <div v-for="item in currentAppointment.items">
+                  <span class="badge badge-danger">{{item.name}}</span>
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <div class="left-side">
-                <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Never mind</button>
-              </div>
-              <div class="divider"></div>
-              <div class="right-side">
-                <button type="button" class="btn btn-danger btn-link">Delete</button>
-              </div>
+          </div>
+          <div class="modal-footer">
+            <div class="left-side">
+              <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Never mind</button>
+            </div>
+            <div class="divider"></div>
+            <div class="right-side">
+              <button type="button" class="btn btn-danger btn-link">Delete</button>
             </div>
           </div>
         </div>
       </div>
+    </div>
     
        
 <!-- end appointment show modal -->
@@ -165,7 +165,7 @@
 </style>
 
 <script>
-import axios from "axios";
+import AppointmentService from '../../services/AppointmentService.js'
 import moment from "moment";
 import VueMoment from "vue-moment";
 import StarRating from "vue-star-rating";
@@ -179,13 +179,14 @@ export default {
   data: function() {
     return {
       appointments: [],
-      currentAppointment: [],
-      rating: "",
+      currentAppointment: {},
+      rating: 0,
       time: "",
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/api/appointments").then(response => {
+    AppointmentService.getAppointments()
+    .then(response => {
       console.log(response.data);
       this.appointments = response.data;
       this.rating = response.data.rating;
@@ -200,11 +201,8 @@ export default {
         time: this.time,
         trainer_id: this.currentAppointment.trainer_id
       };
-      axios
-        .patch(
-          "http://localhost:3000/api/appointments/" +
-            this.currentAppointment.id, params
-        ).then(response => {
+      AppointmentService.patchAppointment(this.currentAppointment.id, params)
+      .then(response => {
           this.$router.push("/usersappointments");
           $("#calendarModal").modal("hide");
           
@@ -214,10 +212,7 @@ export default {
         });
     },
     deleteAppointment: function(appointment) {
-      axios
-        .delete(
-          "http://localhost:3000/api/appointments/" + appointment.id
-        )
+      AppointmentService.deleteAppointment(appointment.id)
         .then(response => {
           // $("#myModal").modal("hide");
           var index = this.appointments.indexOf(appointment);
